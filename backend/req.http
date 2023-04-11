@@ -1,0 +1,62 @@
+@url=http://localhost:9000
+
+### 
+GET {{url}}/requestKeys
+###
+POST {{url}}/postKeys
+Content-Type: application/json
+
+{
+    "name":"Age",
+    "type":"Number"
+}
+###
+
+DELETE {{url}}/deleteKey
+Content-Type: application/json
+
+{
+    "name": "Familie"
+}
+###
+
+
+GET {{url}}/getData
+###
+POST {{url}}/addData
+Content-Type: application/json
+
+[{
+    "id":1,
+    "fistname":"Cynthia",
+    "lastname":"Jepleting",
+    "dateofBirth":"22.11.1998",
+    "goldstatus":true
+}]
+###
+DELETE {{url}}/removeData
+Content-Type: application/json
+
+{
+"_id": {
+    "name": "1",
+    "key": {
+    "name": "_id",
+    "type": "Number"
+    }
+},
+"Name": {
+    "name": "ABZ Aggregatebau",
+    "key": {
+    "name": "Name",
+    "type": "String"
+    }
+},
+"Index": {
+    "name": "1",
+    "key": {
+    "name": "Index",
+    "type": "Number"
+    }
+}
+}
