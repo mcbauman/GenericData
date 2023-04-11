@@ -1,56 +1,22 @@
 <script setup>
-import {ref} from "vue"
-
 import { useKeyResponseStore } from "../stores/keyResonse";
+import DefineKeys from "../components/defineKeys.vue"
+import ShowKeys from "../components/ShowKeys.vue"
 
 const response = useKeyResponseStore();
-const newKey=ref({})
-const helper=ref()
-const array=ref([])
-const object=ref([])
 
 response.requestKeyes();
 </script>
 
 <template>
-    <section v-for="item in response.Keys">
-      <div><span>name:</span>{{ item.name }}</div>
-      <div><span>type:</span>{{ item.type }}</div>
-    </section>
-    <form>
-      <input type="text" placeholder="name" v-model="newKey.name">
-      <select v-model="newKey.type">
-        <option value="String">String</option>
-        <option value="Number">Number</option>
-        <option value="Date">Date</option>
-        <option value="Boolean">Ja/Nein</option>
-        <option value="Array">Liste</option>
-        <option value="Object">strukturierte Liste</option>
-      </select>
-      <div v-if="newKey.type==='Number'">
-        <input type="Number" placeholder="min" v-model="newKey.minRange">
-        <input type="Number" placeholder="max" v-model="newKey.maxRange">
-      </div>
-      <div v-if="newKey.type==='Array'">
-        <input type="number" placeholder="Anzahl Listen-Elemente" v-model="helper">
-        <input type="text" v-for="(n, index) in helper" v-model="array[index]" placeholder="Auswahl-Option">
-      </div>
-      <div v-if="newKey.type==='Object'">
-        <input type="number" placeholder="Anzahl Subtypen" v-model="helper">
-        <input type="text" v-for="(n, index) in helper" v-model="object[index]" placeholder="">
-      </div>
-      <button type="submit" @click.prevent="response.storeNewKey({...newKey,arrayOption:array,objectEntries:object})">Submit</button>
-    </form>
-    <hr>
+  <section class="showKeys">
+    <ShowKeys />
+  </section>
+  <hr>
 
-    <section>
-      {{ newKey.name }}
-      {{ newKey.type }}
-    </section>
+  <section class="defineKeys">
+    <DefineKeys />
+  </section>
+  <hr>
 
-    <section>
-      <div v-for="item in array">
-        {{ item }}
-      </div>
-    </section>
 </template>
