@@ -5,9 +5,9 @@ const keySchema=new mongoose.Schema({
     type:{type:String, enum:["String","Number","Date","Boolean","Array","Object"],required:true},
     minRange:Number,
     maxRange:Number,
-    arrayOption:[],
+    arrayOption:[String],
     // arrayOptions:{type:[{type:Schema.Types.Mixed,required:function(){return this.type=="Array"}}],default:undefined},
-    objectEntries:{}
+    objectEntries:[String]
     // objectEntries:{type:{},required:function(){return this.type=="Object"}}
 },
 {

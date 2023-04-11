@@ -7,8 +7,8 @@ POST {{url}}/postKeys
 Content-Type: application/json
 
 {
-    "name":"Array4",
-    "type":"Array"
+    "name":"Name",
+    "type":"String"
 }
 ###
 
