@@ -6,7 +6,7 @@ const keySchema=new mongoose.Schema({
     minRange:Number,
     maxRange:Number,
     arrayOption:[],
-    // arrayOptions:{type:[],required:function(){return this.type=="Array"}}
+    // arrayOptions:{type:[{type:Schema.Types.Mixed,required:function(){return this.type=="Array"}}],default:undefined},
     objectEntries:{}
     // objectEntries:{type:{},required:function(){return this.type=="Object"}}
 },

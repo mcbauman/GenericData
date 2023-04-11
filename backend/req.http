@@ -7,16 +7,16 @@ POST {{url}}/postKeys
 Content-Type: application/json
 
 {
-    "name":"Age",
-    "type":"Number"
+    "name":"Array4",
+    "type":"Array"
 }
 ###
 
-DELETE {{url}}/deleteKey
+DELETE {{url}}/removeKey
 Content-Type: application/json
 
 {
-    "name": "Familie"
+    "name":"Array4"
 }
 ###
 
