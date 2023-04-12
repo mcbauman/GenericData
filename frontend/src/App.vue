@@ -16,13 +16,21 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <style>
   *{
-    --maincolor:rgba(255, 255, 255, 1);
+    --maincolor:rgb(225, 225, 225);
     --maincontrast:rgba(0, 0, 0, 0.7);
   }
   body{
     margin: 0 auto;
     max-width: 1200px;
-    background-color: antiquewhite;
+    background-color: rgb(102, 102, 102);
+    font-size: 1.2rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  input, select{
+    padding:10px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    border: none;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
   header{
@@ -46,14 +54,14 @@ import { RouterLink, RouterView } from 'vue-router'
     background-color: var(--maincolor);
     color: var(--maincontrast);
     margin: 10px;
-    padding: 10px;
+    padding: 5px;
     border-radius: 10px;
   }
 
   .fieldWrapper{
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin: 5px;
   }
   .row{
     display: flex;

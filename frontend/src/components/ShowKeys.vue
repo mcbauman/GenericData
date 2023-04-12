@@ -5,7 +5,6 @@ const response = useKeyResponseStore();
 </script>
 
 <template>
-  <!-- INPUT KEYS -->
   <div v-for="item in response.Keys" class="entryWrapper">
     <div class="fieldWrapper"><span>name:</span>{{ item.name }}</div>
     <div class="fieldWrapper"><span>type:</span>{{ item.type }}</div>
@@ -24,5 +23,6 @@ const response = useKeyResponseStore();
         <div v-for="field in item.objectEntries">{{ field }}</div>
       </div>
     </div>
+    <button @click="response.deleteKey(item)">Delete</button>
   </div>
 </template>
