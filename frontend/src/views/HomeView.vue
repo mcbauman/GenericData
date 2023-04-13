@@ -20,8 +20,4 @@ response.requestKeyes();
   </section>
   <hr>
 
-  <section>
-    <EnterValues/>
-  </section>
-
 </template>

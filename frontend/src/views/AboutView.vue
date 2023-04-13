@@ -1,7 +1,14 @@
+<script setup>
+import { useKeyResponseStore } from "../stores/keyResonse";
+import EnterValues from "../components/EnterValues.vue";
+const response = useKeyResponseStore();
+response.requestKeyes();
+</script>
+
 <template>
-  <div>
-    <h1>This is an about page</h1>
-  </div>
+  <section>
+    <EnterValues/>
+  </section>
 </template>
 
 <style>
