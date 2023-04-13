@@ -91,7 +91,9 @@ app.get("/getValues", async (req,res)=>{
 
 app.post("/addValues", async (req,res)=>{
     try {
+        console.log("req.body",req.body);
         const result = await ValueSchema.create(req.body)
+        console.log("result",result);
         res.send(result)
     } catch (error) {
         res.status(500).send(error)

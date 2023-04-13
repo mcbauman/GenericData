@@ -45,6 +45,7 @@ import { RouterLink, RouterView } from 'vue-router'
     justify-content: space-between;
   }
   header>nav>a{
+    margin: 20px;
     color: var(--maincolor);
   }
   main{
