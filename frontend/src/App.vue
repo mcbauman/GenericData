@@ -26,8 +26,9 @@ import { RouterLink, RouterView } from 'vue-router'
     font-size: 1.2rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
-  input, select{
+  input, select, button{
     padding:10px;
+    margin: 5px;
     border-radius: 10px;
     font-size: 1.2rem;
     border: none;
@@ -69,5 +70,9 @@ import { RouterLink, RouterView } from 'vue-router'
   }
   span{
     font-size: 0.5rem;
+  }
+  button{
+    background-color: var(--maincontrast);
+    color: var(--maincolor);
   }
 </style>

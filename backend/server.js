@@ -3,6 +3,17 @@ const express = require("express")
 const cors = require("cors")
 const mongoose = require('mongoose');
 const KeySchema = require("./keySchema.JS")
+//const ValueSchema = require("./valueSchema.js")
+
+const valueSchema=new mongoose.Schema({},{
+    toJSON:{
+        transform(doc,ret){
+            delete ret._id
+            delete ret.__v
+        }
+    }
+})
+const ValueSchema=mongoose.model("Values",valueSchema)
 
 // Configuaration Mongoose connetction
 function connectMongoose(){
@@ -29,6 +40,11 @@ app.use(express.json());
 app.get("/requestKeys",async (req,res)=>{
     try {
         const result = await KeySchema.find()
+        let genericSchema={}
+        result.forEach(element=>{
+            genericSchema[element.name]=element.type
+        })
+        valueSchema.add(genericSchema)
         res.send(result)   
     } catch (error) {
         res.status(500).send(error)
@@ -49,7 +65,25 @@ app.post("/postKeys", async (req,res)=>{
 app.delete("/removeKey", async (req, res)=>{
     try {
         const result=await KeySchema.deleteOne(req.body)
-        res.send(result.toArray)
+        res.send(result)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+})
+
+app.get("/getValues", async (req,res)=>{
+    try {
+       const result = await ValueSchema.find()
+       res.send(result) 
+    } catch (error) {
+        res.status(500).send(error)
+    }
+})
+
+app.post("/addValues", async (req,res)=>{
+    try {
+        const result = await ValueSchema.create(req.body)
+        res.send(result)
     } catch (error) {
         res.status(500).send(error)
     }

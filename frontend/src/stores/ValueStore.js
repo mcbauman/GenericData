@@ -1,9 +1,11 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 
+
 export const useValueStore = defineStore("valueStore", () => {
     const Values = ref({})
     const Array=ref([])
+
     function requestValues() {
       fetch("http://localhost:9000/requestValues")
         .then((response) => response.json())
@@ -17,7 +19,7 @@ export const useValueStore = defineStore("valueStore", () => {
       fetch("http://localhost:9000/postValues", {
         method: "POST",
         headers: { "content-Type": "application/json" },
-        body: JSON.stringify(newValues),
+        body: JSON.stringify(newValue),
       }).then(() => {
         requestValues();
       });

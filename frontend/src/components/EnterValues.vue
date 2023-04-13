@@ -9,10 +9,10 @@ const Values=useValueStore()
 const arrayHelper=ref(1)
 const response = useKeyResponseStore();
 
-
 function SubmitFunction(){
   let childObjectKey=response.Keys.find(El=>El.type=="Object").name
   Values.Values[childObjectKey]=Values.Array
+  console.log(Values.Values);
 }
 </script>
 

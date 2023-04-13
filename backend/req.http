@@ -6,10 +6,77 @@ GET {{url}}/requestKeys
 POST {{url}}/postKeys
 Content-Type: application/json
 
-{
-    "name":"Name",
-    "type":"String"
-}
+[
+      {
+    "name": "Vorname",
+    "type": "String",
+    "arrayOption": [],
+    "objectEntries": []
+  },
+  {
+    "name": "Nachname",
+    "type": "String",
+    "arrayOption": [],
+    "objectEntries": []
+  },
+  {
+    "name": "Geburtsdatum",
+    "type": "Date",
+    "arrayOption": [],
+    "objectEntries": []
+  },
+  {
+    "name": "verheiratet",
+    "type": "Boolean",
+    "arrayOption": [],
+    "objectEntries": []
+  },
+  {
+    "name": "Geschlecht",
+    "type": "Array",
+    "arrayOption": [
+      "Männlich",
+      "Weiblich",
+      "Divers"
+    ],
+    "objectEntries": []
+  },
+  {
+    "name": "Kinder",
+    "type": "Object",
+    "arrayOption": [
+      "Männlich",
+      "Weiblich",
+      "Divers"
+    ],
+    "objectEntries": [
+      "Name",
+      "Geburtsdatum"
+    ]
+  },
+  {
+    "name": "status",
+    "type": "Array",
+    "arrayOption": [
+      "Angestellt",
+      "Selbstständig",
+      "Arbeitslos"
+    ],
+    "objectEntries": []
+  },
+  {
+    "name": "Score",
+    "type": "Number",
+    "minRange": 0,
+    "maxRange": 15,
+    "arrayOption": [
+      "Angestellt",
+      "Selbstständig",
+      "Arbeitslos"
+    ],
+    "objectEntries": []
+  }
+]
 ###
 
 DELETE {{url}}/removeKey
@@ -20,19 +87,15 @@ Content-Type: application/json
 }
 ###
 
-
-GET {{url}}/getData
-###
-POST {{url}}/addData
+POST {{url}}/addValues
 Content-Type: application/json
 
 [{
-    "id":1,
-    "fistname":"Cynthia",
-    "lastname":"Jepleting",
-    "dateofBirth":"22.11.1998",
-    "goldstatus":true
+    "Vorname":"Matthias",
+    "Nachname":"Baumann"
 }]
+###
+GET {{url}}/getValues
 ###
 DELETE {{url}}/removeData
 Content-Type: application/json
