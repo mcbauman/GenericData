@@ -39,6 +39,11 @@ import { RouterLink, RouterView } from 'vue-router'
     background-color: var(--maincontrast);
     color: var(--maincolor);
   }
+  nav{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
   header>nav>a{
     color: var(--maincolor);
   }

@@ -42,7 +42,15 @@ app.get("/requestKeys",async (req,res)=>{
         const result = await KeySchema.find()
         let genericSchema={}
         result.forEach(element=>{
-            genericSchema[element.name]=element.type
+            if(element.type=="Array"){
+                genericSchema[element.name]="String"
+            }
+            else if(element.type=="Object"){
+                genericSchema[element.name]="Array"
+            }
+            else{
+                genericSchema[element.name]=element.type
+            }
         })
         valueSchema.add(genericSchema)
         res.send(result)   
