@@ -5,21 +5,23 @@ import { defineStore } from "pinia";
 export const useValueStore = defineStore("valueStore", () => {
     const Values = ref({})
     const Array=ref([])
+    const Response = ref("HERE IT IS")
 
     function requestValues() {
-      fetch("http://localhost:9000/requestValues")
+      fetch("http://localhost:9000/getValues")
         .then((response) => response.json())
         .then((data) => {
-          Keys.value = data;
+          console.log("Data in ValueStore/RequestValues()",data);
+          Response.value = data;
         });
     }
   
-    function storeNewValue(newValue) {
-      console.log("NEW KEYS IN StoreNewKey",newValue);
-      fetch("http://localhost:9000/postValues", {
+    function storeNewValue() {
+      console.log("NEW KEYS IN StoreNewKey",Values.value);
+      fetch("http://localhost:9000/addValues", {
         method: "POST",
         headers: { "content-Type": "application/json" },
-        body: JSON.stringify(newValue),
+        body: JSON.stringify(Values.value),
       }).then(() => {
         requestValues();
       });
@@ -35,5 +37,5 @@ export const useValueStore = defineStore("valueStore", () => {
       });
     }
   
-    return { Values, Array, requestValues, storeNewValue, deleteValue };
+    return { Values, Array, Response, requestValues, storeNewValue, deleteValue };
   });

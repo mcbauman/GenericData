@@ -13,6 +13,7 @@ function SubmitFunction(){
   let childObjectKey=response.Keys.find(El=>El.type=="Object").name
   Values.Values[childObjectKey]=Values.Array
   console.log(Values.Values);
+  Values.storeNewValue()
 }
 </script>
 

@@ -74,6 +74,7 @@ app.delete("/removeKey", async (req, res)=>{
 app.get("/getValues", async (req,res)=>{
     try {
        const result = await ValueSchema.find()
+       console.log("GetValues",result);
        res.send(result) 
     } catch (error) {
         res.status(500).send(error)

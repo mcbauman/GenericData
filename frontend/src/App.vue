@@ -7,6 +7,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <nav>
         <RouterLink to="/">Define Fields</RouterLink>
         <RouterLink to="/about">Enter Values</RouterLink>
+        <RouterLink to="/ShowValues">Show Values</RouterLink>
       </nav>
   </header>
   <main>
