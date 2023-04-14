@@ -96,17 +96,20 @@ import { RouterLink, RouterView } from 'vue-router'
     height: 45px;
     min-width: 45px;
     width: fit-content;
-    background-color: var(--maincontrast);
+    /* background-color: var(--maincontrast); */
     color: var(--maincolor);
   }
 
   .danger{
-    background-color: var(--danger);
+    color: var(--danger);
   }
   .warning{
-    background-color: var(--warning);
+    color: var(--warning);
   }
   .submit{
+    color: var(--submit);
+  }
+  .callToAction{
     background-color: var(--submit);
   }
 </style>

@@ -79,11 +79,12 @@ response.requestKeyes();
         </form>
       </div>
     </div>
-    <button type="submit" @click.prevent="SubmitFunction" class="submit">
+    <button type="submit" @click.prevent="SubmitFunction" class="callToAction">
       <font-awesome-icon icon="floppy-disk" title="Add key-defenition" />
     </button>
   </form>
 </template>
+
 <style scoped>
 form {
   display: flex;
