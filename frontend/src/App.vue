@@ -8,6 +8,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/">Define Fields</RouterLink>
         <RouterLink to="/about">Enter Values</RouterLink>
         <RouterLink to="/ShowValues">Show Values</RouterLink>
+        <RouterLink to="/settings">Settings</RouterLink>
       </nav>
   </header>
   <main>
@@ -32,7 +33,7 @@ import { RouterLink, RouterView } from 'vue-router'
     font-size: 1.2rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
-  input, select, button,fieldset{
+  input, select, button, fieldset{
     padding:10px;
     margin: 5px;
     font-size: 1.2rem;
@@ -40,7 +41,7 @@ import { RouterLink, RouterView } from 'vue-router'
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
 
-  input, select,fieldset{
+  input, select, fieldset{
     border-radius: 10px;
     background-color: var(--inputs);
   }
