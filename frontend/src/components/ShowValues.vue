@@ -22,7 +22,6 @@ response.requestKeyes();
                     </div>
                 </p>
                 <p v-else>{{ element[content.name] }}</p>
-                <!-- {{ element[content.name] }} -->
             </td>
         </tr>
     </table>

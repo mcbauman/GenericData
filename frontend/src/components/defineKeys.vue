@@ -8,6 +8,15 @@ const newKey = ref({});
 const helper = ref();
 const array = ref([]);
 const object = ref([]);
+
+function storeNewKey(){
+  response.storeNewKey({
+          ...newKey.value,
+          arrayOption: array.value,
+          objectEntries: object.value,
+        })
+  helper.value=null
+}
 </script>
 
 <template>
@@ -48,16 +57,19 @@ const object = ref([]);
       />
     </div>
     <button
+      class="submit"
       type="submit"
-      @click.prevent="
-        response.storeNewKey({
-          ...newKey,
-          arrayOption: array,
-          objectEntries: object,
-        })
-      "
+      @click.prevent="storeNewKey"
     >
-      Submit
+      <font-awesome-icon icon="floppy-disk" title="Add key-defenition" />
     </button>
   </form>
 </template>
+
+<style scoped>
+  .entryWrapper{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+</style>

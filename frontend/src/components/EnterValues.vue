@@ -15,8 +15,8 @@ function SubmitFunction() {
   console.log("EnterVAlues/Submit/Values.Array", Values.Array);
   console.log("EnterValues/Values.Values", Values.Values);
   Values.storeNewValue();
-  Values.Array=[]
-  Values.Values=[]
+  Values.Array = [];
+  Values.Values = {};
 }
 
 response.requestKeyes();
@@ -27,15 +27,15 @@ response.requestKeyes();
     <div v-for="item in response.Keys" class="entryWrapper">
       <div class="fieldWrapper">
         <span>{{ item.name }}</span>
-        <span v-if="item.type == 'Number'"
-          >{{ item.minRange }} - {{ item.maxRange }}</span
-        >
+        <span v-if="item.type == 'Number'">{{ item.minRange }} - {{ item.maxRange }}</span>
         <input
+          class="aThird"
           v-if="item.type == 'String' || item.type == 'Date'"
           :type="item.type"
           v-model="Values.Values[item.name]"
         />
         <input
+          class="aThird"
           v-if="item.type == 'Number'"
           type="Number"
           :min="item.minRange"
@@ -43,11 +43,12 @@ response.requestKeyes();
           v-model="Values.Values[item.name]"
         />
         <input
+        class="aThird"
           v-if="item.type == 'Boolean'"
           type="checkbox"
           v-model="Values.Values[item.name]"
         />
-        <fieldset v-if="item.type == 'Array'">
+        <fieldset class="aThird" v-if="item.type == 'Array'">
           <div v-for="(element, index) in item.arrayOption">
             <input
               type="radio"
@@ -59,13 +60,17 @@ response.requestKeyes();
             <label :for="index">{{ element }}</label>
           </div>
         </fieldset>
-        <form v-if="item.type == 'Object'">
-          <button @click.prevent="arrayHelper++">
-            {{ item.name }} hinzufügen
-          </button>
-          <button @click.prevent="arrayHelper--">
-            {{ item.name }} entfernen
-          </button>
+        <form class="wholeW" v-if="item.type == 'Object'">
+          <div>
+            <button @click.prevent="arrayHelper++" class="submit">
+              <font-awesome-icon icon="plus" title="Add Data to List" />
+              {{ item.name }} hinzufügen
+            </button>
+            <button @click.prevent="arrayHelper--" class="danger">
+              <font-awesome-icon icon="minus" title="Add Data to List" />
+              {{ item.name }} entfernen
+            </button>
+          </div>
           <EnterObject
             v-for="index in arrayHelper"
             :item="item.objectEntries"
@@ -74,6 +79,22 @@ response.requestKeyes();
         </form>
       </div>
     </div>
-    <button type="submit" @click.prevent="SubmitFunction">SEND</button>
+    <button type="submit" @click.prevent="SubmitFunction" class="submit">
+      <font-awesome-icon icon="floppy-disk" title="Add key-defenition" />
+    </button>
   </form>
 </template>
+<style scoped>
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.wholeW{
+  flex-direction: column;
+  border-radius: 10px;
+}
+span{
+  margin-left: 10px;
+}
+</style>

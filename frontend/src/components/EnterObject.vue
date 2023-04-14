@@ -17,6 +17,15 @@ function savefunction(){
             <span>{{ elem }}</span>
             <input type="text" v-model=keyValuePairs[elem]>
         </div>
-        <button @click.prevent="savefunction">save</button>  
+        <button @click.prevent="savefunction" class="submit">
+            <font-awesome-icon icon="floppy-disk" title="Add key-defenition" />
+        </button>  
     </div>
 </template>
+
+<style scoped>
+.entryWrapper{
+    flex-wrap: wrap;
+}
+
+</style>

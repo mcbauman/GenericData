@@ -9,14 +9,19 @@ response.requestKeyes();
 </script>
 
 <template>
+
+<section class="defineKeys">
+    <DefineKeys />
+  </section>
+  <hr>
+
   <section class="showKeys">
     <ShowKeys />
   </section>
   <hr>
 
-  <section class="defineKeys">
-    <DefineKeys />
-  </section>
-  <hr>
-
 </template>
+
+<style scoped>
+
+</style>
