@@ -3,23 +3,27 @@ import { useKeyResponseStore } from "../stores/keyResonse";
 import { useValueStore } from "../stores/ValueStore"
 const response = useKeyResponseStore();
 const Values=useValueStore()
+
+response.requestKeyes();
 </script>
 
 <template>
-    <!-- <div v-for="element in Values.Response">
-        <div v-for="(value, key) in element">
-            <span>{{ key }}</span>
-            {{ value }}
-        </div>
-    </div>
-    <hr> -->
-
     <table>
         <tr>
-            <th v-for="(value,key) in Values.Response[0]">{{ key }}</th>
+            <th v-for="item in response.Keys">{{ item.name }}</th>
         </tr>
         <tr v-for="element in Values.Response">
-            <td v-for="(value,key) in element">{{ value }}</td>
+            <td v-for="content in response.Keys">
+                <p v-if="Array.isArray(element[content.name])" 
+                v-for="obj in element[content.name]">
+                    <div v-for="(value, key) in obj">
+                        <span>{{ key }}</span>
+                        {{ value }}
+                    </div>
+                </p>
+                <p v-else>{{ element[content.name] }}</p>
+                <!-- {{ element[content.name] }} -->
+            </td>
         </tr>
     </table>
 </template>
@@ -28,6 +32,7 @@ const Values=useValueStore()
 table{
     background-color: var(--maincolor);
     margin-top: 20px;
+    border-collapse: collapse;
 }
 th{
     background-color: var(--maincontrast);
@@ -35,7 +40,13 @@ th{
     padding: 10px;
 }
 td{
-    padding:10px
+    padding:10px;
+    border:2px solid white;
+}
+
+p{
+    display: flex;
+    margin-block: 0;
 }
 
 </style>
