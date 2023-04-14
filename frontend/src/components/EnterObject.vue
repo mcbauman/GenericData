@@ -7,6 +7,7 @@ const keyValuePairs=ref({})
 
 function savefunction(){
     Values.Array.push(keyValuePairs.value)
+    console.log("Values.Array",Values.Array);
 }
 
 </script>

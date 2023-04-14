@@ -17,8 +17,8 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <style>
   *{
-    --maincolor:rgb(225, 225, 225);
-    --maincontrast:rgba(0, 0, 0, 0.7);
+    --maincolor:rgb(226, 223, 219);
+    --maincontrast:rgba(80, 19, 19, 0.7);
   }
   body{
     margin: 0 auto;

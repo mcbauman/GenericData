@@ -46,7 +46,7 @@ app.get("/requestKeys",async (req,res)=>{
                 genericSchema[element.name]="String"
             }
             else if(element.type=="Object"){
-                genericSchema[element.name]="Array"
+                genericSchema[element.name]="Mixed"
             }
             else{
                 genericSchema[element.name]=element.type
