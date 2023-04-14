@@ -39,7 +39,7 @@ app.use(express.json());
 //KEYS via Mongoose
 app.get("/requestKeys",async (req,res)=>{
     try {
-        const result = await KeySchema.find()
+        const result = await KeySchema.find().sort({index:1})
         let genericSchema={}
         result.forEach(element=>{
             if(element.type=="Array"){
@@ -55,6 +55,7 @@ app.get("/requestKeys",async (req,res)=>{
         valueSchema.add(genericSchema)
         res.send(result)   
     } catch (error) {
+        console.log(error);
         res.status(500).send(error)
     }
 })
@@ -70,11 +71,33 @@ app.post("/postKeys", async (req,res)=>{
     }
 })
 
+app.put("/updateKey", async (req,res)=>{
+    console.log("UpdateKey",req.body);
+    try {
+        const result=await KeySchema.findByIdAndUpdate(req.body._id,req.body,{new:true})
+        res.status(200).send(result)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error)
+    }
+})
+
 app.delete("/removeKey", async (req, res)=>{
     try {
         const result=await KeySchema.deleteOne(req.body)
         res.send(result)
     } catch (error) {
+        console.log(error);
+        res.status(500).send(error)
+    }
+})
+
+app.delete("/removeAllKeys", async (req, res)=>{
+    try {
+        const result=await KeySchema.deleteMany()
+        res.send(result)
+    } catch (error) {
+        console.log(error);
         res.status(500).send(error)
     }
 })
@@ -85,6 +108,7 @@ app.get("/getValues", async (req,res)=>{
        console.log("GetValues",result);
        res.send(result) 
     } catch (error) {
+        console.log(error);
         res.status(500).send(error)
     }
 })
@@ -96,6 +120,7 @@ app.post("/addValues", async (req,res)=>{
         console.log("result",result);
         res.send(result)
     } catch (error) {
+        console.log(error);
         res.status(500).send(error)
     }
 })

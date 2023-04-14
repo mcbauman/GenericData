@@ -32,5 +32,21 @@ export const useKeyResponseStore = defineStore("keyResponse", () => {
     });
   }
 
-  return { Keys, requestKeyes, storeNewKey, deleteKey };
+  function updateKey(_id,index) {
+    fetch("http://localhost:9000/updateKey", {
+      method: "Put",
+      headers: { "content-Type": "application/json" },
+      body: JSON.stringify({_id,index}),
+    }).then(() => {
+      console.log("KEYS Sortet BE");
+    });
+  }
+
+  function moveItemToIndex(itemIndex, newIndex, _id) {
+    const cutted = Keys.value.splice(itemIndex, 1);
+    Keys.value.splice(newIndex, 0, cutted[0]);
+    updateKey(_id,newIndex)
+  }
+
+  return { Keys, requestKeyes, storeNewKey, deleteKey, moveItemToIndex };
 });

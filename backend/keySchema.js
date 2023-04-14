@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const keySchema=new mongoose.Schema({
     name:{type:String, required:true, unique:true },
     type:{type:String, enum:["String","Number","Date","Boolean","Array","Object"],required:true},
+    index:Number,
     minRange:Number,
     maxRange:Number,
     arrayOption:[String],
@@ -13,7 +14,7 @@ const keySchema=new mongoose.Schema({
 {
     toJSON:{
         transform(doc,ret){
-            delete ret._id
+            // delete ret._id
             delete ret.__v
         }
     }

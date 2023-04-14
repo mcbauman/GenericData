@@ -1,32 +1,54 @@
 <script setup>
 import { useKeyResponseStore } from "../stores/keyResonse";
 
+function dropEvent(event, newIndex) {
+  const passedV = event.dataTransfer.getData("index");
+  const passedID = event.dataTransfer.getData("_id");
+  console.log("Dropped",passedV, newIndex, passedID);
+  response.moveItemToIndex(passedV,newIndex,passedID)
+}
+function dragEvent(event, data, data2) {
+  event.dataTransfer.setData("index", data);
+  event.dataTransfer.setData("_id", data2);
+  console.log("DRAGGED", data, data2);
+}
+
 const response = useKeyResponseStore();
 </script>
 
 <template>
-  <div v-for="item in response.Keys" class="entryWrapper">
-    <div class="fieldWrapper gridName"><span>name:</span>{{ item.name }}</div>
-    <div class="fieldWrapper gridType"><span>type:</span>{{ item.type }}</div>
-    <div v-if="item.type === 'Number'" class="fieldWrapper gridOptions">
-      <span>range:</span>{{ item.minRange }} - {{ item.maxRange }}
-    </div>
-    <div v-if="item.type === 'Array'" class="fieldWrapper gridOptions">
-      <span>Options:</span>
-      <div class="row">
-        <div v-for="field in item.arrayOption">{{ field }} / </div>
+  <article
+    v-for="(object, index) in response.Keys" 
+    @drop="dropEvent($event, index)"
+    @dragover.prevent
+    @dragenter.prevent
+  >
+    <div 
+      class="entryWrapper"
+      draggable="true" @dragstart="dragEvent($event,index, object._id)"
+    >
+      <div class="fieldWrapper gridName"><span>name:</span>{{ object.name }}</div>
+      <div class="fieldWrapper gridType"><span>type:</span>{{ object.type }}</div>
+      <div v-if="object.type === 'Number'" class="fieldWrapper gridOptions">
+        <span>range:</span>{{ object.minRange }} - {{ object.maxRange }}
       </div>
-    </div>
-    <div v-if="item.type === 'Object'" class="fieldWrapper gridOptions">
-      <span>Kategorie:</span>
-      <div class="row">
-        <div v-for="field in item.objectEntries">{{ field }} / </div>
+      <div v-if="object.type === 'Array'" class="fieldWrapper gridOptions">
+        <span>Options:</span>
+        <div class="row">
+          <div v-for="field in object.arrayOption">{{ field }} / </div>
+        </div>
       </div>
+      <div v-if="object.type === 'Object'" class="fieldWrapper gridOptions">
+        <span>Kategorie:</span>
+        <div class="row">
+          <div v-for="field in object.objectEntries">{{ field }} / </div>
+        </div>
+      </div>
+      <button @click="response.deleteKey(object)" class="danger gridButton">
+        <font-awesome-icon icon="trash" />
+      </button>
     </div>
-    <button @click="response.deleteKey(item)" class="danger gridButton">
-      <font-awesome-icon icon="trash" />
-    </button>
-  </div>
+  </article>
 </template>
 
 <style scoped>
