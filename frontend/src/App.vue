@@ -20,11 +20,11 @@ import { RouterLink, RouterView } from 'vue-router'
   *{
     --inputs:white;
     --maincolor:rgb(226, 223, 219,1);
-    --maincontrast:rgba(80, 19, 19, 0.7);
+    --maincontrast:rgba(0, 40, 104, 0.7);
     --danger:rgb(200, 30, 30);
     --warning:rgb(179, 129, 36);
     --submit:rgb(113, 155, 29);
-    --background:rgb(50,20,20,0.2);
+    --background:rgb(20,20,20,0.2);
   }
   body{
     margin: 0 auto;
