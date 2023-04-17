@@ -2,7 +2,7 @@ import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 
 export const useSettingsStore = defineStore("keyResponse", () => {
-  const Values = ref({})
+  const Values = ref("red")
 
 //   function requestKeyes() {
 //     fetch("http://localhost:9000/requestSettings")

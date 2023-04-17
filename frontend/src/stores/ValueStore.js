@@ -36,6 +36,6 @@ export const useValueStore = defineStore("valueStore", () => {
         requestValues();
       });
     }
-  
+
     return { Values, Array, Response, requestValues, storeNewValue, deleteValue };
   });
