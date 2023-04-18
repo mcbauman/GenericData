@@ -27,6 +27,7 @@ response.requestKeyes();
     <div v-for="item in response.Keys" class="entryWrapper">
       <div class="fieldWrapper">
         <span>{{ item.name }}</span>
+<!--  MAKE A FUNCTION -->
         <span v-if="item.type == 'Number'">{{ item.minRange }} - {{ item.maxRange }}</span>
         <input
           class="aThird"
@@ -77,6 +78,7 @@ response.requestKeyes();
             :index="index"
           />
         </form>
+<!-- END FUNCTION -->
       </div>
     </div>
     <button type="submit" @click.prevent="SubmitFunction" class="callToAction">

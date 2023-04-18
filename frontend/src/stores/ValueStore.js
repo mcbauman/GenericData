@@ -6,6 +6,8 @@ export const useValueStore = defineStore("valueStore", () => {
     const Values = ref({})
     const Array=ref([])
     const Response = ref("HERE IT IS")
+    const modal=ref(false)
+    const changedValues = ref({})
 
     function requestValues() {
       fetch("http://localhost:9000/getValues")
@@ -37,5 +39,5 @@ export const useValueStore = defineStore("valueStore", () => {
       });
     }
 
-    return { Values, Array, Response, requestValues, storeNewValue, deleteValue };
+    return { Values, Array, Response, modal, changedValues, requestValues, storeNewValue, deleteValue };
   });
