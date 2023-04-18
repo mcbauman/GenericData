@@ -1,10 +1,12 @@
 <script setup>
 import { useValueStore } from "../stores/ValueStore";
 import BindDataToForm from "./bindDataToForm.vue";
+
 const Values = useValueStore();
 
-function logIt(){
-  console.log("newVAriable",Values.changedValues);
+function logIt() {
+  console.log("Modal", Values.modal);
+  console.log("newVAriable", Values.changedValues);
 }
 </script>
 
@@ -15,10 +17,8 @@ function logIt(){
       <button @click="Values.modal = false">X</button>
     </div>
     <div class="modalMain">
-    <BindDataToForm :variableToDeclare="Values.changedValues" />
-      <button @click="logIt">
-        logIt
-      </button>
+      <BindDataToForm :variableToDeclare="Values.changedValues" />
+      <button @click="logIt">logIt</button>
       <button
         class="danger"
         @click="Values.deleteValue({ _id: Values.modal._id })"
@@ -34,7 +34,6 @@ function logIt(){
   background-color: rgba(255, 255, 255, 1);
   border-radius: 10px;
   width: 1200px;
-  height: 400px;
   position: absolute;
 }
 .modalHeader {
@@ -47,6 +46,9 @@ function logIt(){
 }
 .modalMain {
   background-color: var(--maincolor);
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
   padding: 10px;
   min-height: 100%;
   border-radius: 0 0 10px 10px;

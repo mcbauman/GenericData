@@ -2,8 +2,6 @@ import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 
 export const useSettingsStore = defineStore("keyResponse", () => {
-  // const mainContrast = ref("#e2dfdb")
-  // const mainColor=ref("#002868b3")
   const mainContrast = ref("#002868b3")
   const mainColor=ref("#e2dfdb")
 

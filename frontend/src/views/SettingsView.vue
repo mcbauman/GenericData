@@ -1,8 +1,13 @@
 <script setup>
-import { ref } from 'vue';
 import { useSettingsStore } from '../stores/SettingsStore';
+import { useKeyResponseStore } from "../stores/keyResonse";
+
+const response = useKeyResponseStore();
 const settings=useSettingsStore()
 const { mainContrast, mainColor }=settings
+
+
+response.requestKeyes();
 </script>
 
 <template>

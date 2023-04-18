@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from "vue";
-
 import { useKeyResponseStore } from "../stores/keyResonse";
 
 const response = useKeyResponseStore();
@@ -9,13 +8,13 @@ const helper = ref();
 const array = ref([]);
 const object = ref([]);
 
-function storeNewKey(){
+function storeNewKey() {
   response.storeNewKey({
-          ...newKey.value,
-          arrayOption: array.value,
-          objectEntries: object.value,
-        })
-  helper.value=null
+    ...newKey.value,
+    arrayOption: array.value,
+    objectEntries: object.value,
+  });
+  helper.value = null;
 }
 </script>
 
@@ -56,20 +55,16 @@ function storeNewKey(){
         placeholder=""
       />
     </div>
-    <button
-      class="submit"
-      type="submit"
-      @click.prevent="storeNewKey"
-    >
+    <button class="submit" type="submit" @click.prevent="storeNewKey">
       <font-awesome-icon icon="floppy-disk" title="Add key-defenition" />
     </button>
   </form>
 </template>
 
 <style scoped>
-  .entryWrapper{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
+.entryWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 </style>
