@@ -8,7 +8,6 @@ const KeySchema = require("./keySchema.JS")
 const valueSchema=new mongoose.Schema({},{
     toJSON:{
         transform(doc,ret){
-            delete ret._id
             delete ret.__v
         }
     }
@@ -36,7 +35,7 @@ const app=express();
 app.use(cors());
 app.use(express.json());
 
-//KEYS via Mongoose
+//KEYS
 app.get("/requestKeys",async (req,res)=>{
     try {
         const result = await KeySchema.find().sort({index:1})
@@ -102,6 +101,8 @@ app.delete("/removeAllKeys", async (req, res)=>{
     }
 })
 
+//VALUES
+
 app.get("/getValues", async (req,res)=>{
     try {
        const result = await ValueSchema.find()
@@ -118,6 +119,18 @@ app.post("/addValues", async (req,res)=>{
         console.log("req.body",req.body);
         const result = await ValueSchema.create(req.body)
         console.log("result",result);
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error)
+    }
+})
+
+app.delete("/deleteValue", async (req,res)=>{
+    try {
+        console.log(req.body);
+        const result=await ValueSchema.findByIdAndDelete(req.body._id)
+        // console.log(result);
         res.send(result)
     } catch (error) {
         console.log(error);

@@ -97,29 +97,9 @@ Content-Type: application/json
 ###
 GET {{url}}/getValues
 ###
-DELETE {{url}}/removeData
+DELETE {{url}}/deleteValue
 Content-Type: application/json
 
 {
-"_id": {
-    "name": "1",
-    "key": {
-    "name": "_id",
-    "type": "Number"
-    }
-},
-"Name": {
-    "name": "ABZ Aggregatebau",
-    "key": {
-    "name": "Name",
-    "type": "String"
-    }
-},
-"Index": {
-    "name": "1",
-    "key": {
-    "name": "Index",
-    "type": "Number"
-    }
-}
+"_id":"643937a087d6de66f091e54b"
 }

@@ -27,11 +27,11 @@ export const useValueStore = defineStore("valueStore", () => {
       });
     }
   
-    function deleteValue(filter) {
-      fetch("http://localhost:9000/removeValues", {
+    function deleteValue(id) {
+      fetch("http://localhost:9000/deleteValue", {
         method: "Delete",
         headers: { "content-Type": "application/json" },
-        body: JSON.stringify(filter),
+        body: JSON.stringify(id),
       }).then(() => {
         requestValues();
       });

@@ -26,10 +26,10 @@ response.requestKeyes();
     <table>
         <tr>
             <th v-for="item in response.Keys">{{ item.name }}</th>
+            <th>actions</th>
         </tr>
-        <tr v-for="element in Values.Response"
-            @click="modal=element">
-            <td v-for="content in response.Keys">
+        <tr v-for="element in Values.Response">
+            <td v-for="content in response.Keys" @click="modal=element">
                 <p v-if="Array.isArray(element[content.name])" 
                 v-for="obj in element[content.name]">
                     <div v-for="(value, key) in obj">
@@ -38,6 +38,11 @@ response.requestKeyes();
                     </div>
                 </p>
                 <p v-else>{{ element[content.name] }}</p>
+            </td>
+            <td>
+                <button class="danger" @click="Values.deleteValue({_id:element._id})">
+                    delete
+                </button>
             </td>
         </tr>
     </table>
