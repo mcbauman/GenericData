@@ -4,6 +4,11 @@ import BindDataToForm from "./bindDataToForm.vue";
 
 const Values = useValueStore();
 
+function deleteFunction(){
+  Values.deleteValue({ _id: Values.modal._id })
+  Values.modal=false
+}
+
 function logIt() {
   console.log("Modal", Values.modal);
   console.log("newVAriable", Values.changedValues);
@@ -22,7 +27,7 @@ function logIt() {
         <button @click="logIt">logIt</button>
         <button
           class="danger"
-          @click="Values.deleteValue({ _id: Values.modal._id })"
+          @click="deleteFunction"
         >
           delete
         </button>
@@ -43,6 +48,7 @@ function logIt() {
   left: 0;
   display: flex;
   justify-content: center;
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(10px);
 }
 .modalContent{
