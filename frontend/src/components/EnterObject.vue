@@ -1,13 +1,15 @@
 <script setup>
 import { ref } from "vue";
 import { useValueStore } from "../stores/ValueStore"
-const props = defineProps(['item','index'])
+const props = defineProps(['item','index',"target"])
 const Values= useValueStore()
 const keyValuePairs=ref({})
 
+//target=Values.Array
+//taget=
 function savefunction(){
-    Values.Array.push(keyValuePairs.value)
-    console.log("Values.Array",Values.Array);
+    props.target.push(keyValuePairs.value)
+    console.log("Values.Array",props.target);
 }
 
 </script>

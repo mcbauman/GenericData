@@ -1,8 +1,11 @@
 <script setup>
-import { useKeyResponseStore } from "../stores/keyResonse";
 import { useValueStore } from "../stores/ValueStore";
-const response = useKeyResponseStore();
+import BindDataToForm from "./bindDataToForm.vue";
 const Values = useValueStore();
+
+function logIt(){
+  console.log("newVAriable",Values.changedValues);
+}
 </script>
 
 <template>
@@ -12,14 +15,10 @@ const Values = useValueStore();
       <button @click="Values.modal = false">X</button>
     </div>
     <div class="modalMain">
-      <div v-for="element in response.Keys" class="fieldWrapper">
-        <span>{{ element.name }}</span>
-        <input
-          type="text"
-          v-model="Values.changedValues[element]"
-          :placeholder="Values.modal[element.name]"
-        />
-      </div>
+    <BindDataToForm :variableToDeclare="Values.changedValues" />
+      <button @click="logIt">
+        logIt
+      </button>
       <button
         class="danger"
         @click="Values.deleteValue({ _id: Values.modal._id })"
