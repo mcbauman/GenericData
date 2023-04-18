@@ -58,9 +58,7 @@ import { RouterLink, RouterView } from 'vue-router'
     margin: 20px;
     color: var(--maincolor);
   }
-  main{
 
-  }
   section{
     /* display: flex;
     justify-content: space-between; */
@@ -98,7 +96,7 @@ import { RouterLink, RouterView } from 'vue-router'
     min-width: 45px;
     width: fit-content;
     /* background-color: var(--maincontrast); */
-    color: var(--maincolor);
+    /* color: var(--maincolor); */
   }
 
   .danger{
@@ -112,5 +110,6 @@ import { RouterLink, RouterView } from 'vue-router'
   }
   .callToAction{
     background-color: var(--submit);
+    color: var(--maincolor);
   }
 </style>

@@ -8,7 +8,7 @@ const Values = useValueStore();
 </script>
 
 <template>
-  <showDetails />
+  <showDetails v-if="Values.modal" />
   <table>
     <tr>
       <th v-for="item in response.Keys">{{ item.name }}</th>
@@ -32,6 +32,7 @@ const Values = useValueStore();
 
 <style scoped>
 table {
+  width: 100%;
   background-color: var(--maincolor);
   margin-top: 20px;
   border-collapse: collapse;

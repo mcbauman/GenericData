@@ -11,30 +11,42 @@ function logIt() {
 </script>
 
 <template>
-  <div v-if="Values.modal" class="modal">
-    <div class="modalHeader">
-      DETAILANSICHT
-      <button @click="Values.modal = false">X</button>
-    </div>
-    <div class="modalMain">
-      <BindDataToForm :variableToDeclare="Values.changedValues" />
-      <button @click="logIt">logIt</button>
-      <button
-        class="danger"
-        @click="Values.deleteValue({ _id: Values.modal._id })"
-      >
-        delete
-      </button>
+  <div class="modal">
+    <div class="modalContent">
+      <div class="modalHeader">
+        DETAILANSICHT
+        <button @click="Values.modal = false">X</button>
+      </div>
+      <div class="modalMain">
+        <BindDataToForm :variableToDeclare="Values.changedValues" />
+        <button @click="logIt">logIt</button>
+        <button
+          class="danger"
+          @click="Values.deleteValue({ _id: Values.modal._id })"
+        >
+          delete
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .modal {
-  background-color: rgba(255, 255, 255, 1);
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  width: 1200px;
+  width: 100vw;
+  height: 100vh;
   position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+.modalContent{
+  max-width: 1000px;
 }
 .modalHeader {
   background-color: var(--maincontrast);
@@ -46,11 +58,10 @@ function logIt() {
 }
 .modalMain {
   background-color: var(--maincolor);
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  align-items: start;
   padding: 10px;
-  min-height: 100%;
   border-radius: 0 0 10px 10px;
 }
 </style>
