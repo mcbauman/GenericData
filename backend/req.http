@@ -103,3 +103,12 @@ Content-Type: application/json
 {
 "_id":"643937a087d6de66f091e54b"
 }
+
+###
+PUT {{url}}/updateValue
+Content-Type: application/json
+
+{
+"_id":"643e3e682c54f1a984afa606",
+"Vorname":"Torge"
+}

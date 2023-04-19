@@ -1,8 +1,10 @@
 <script setup>
 import { useValueStore } from "../stores/ValueStore";
 import BindDataToForm from "./bindDataToForm.vue";
+import { useKeyResponseStore } from "../stores/keyResonse";
 
 const Values = useValueStore();
+const response = useKeyResponseStore();
 
 function deleteFunction(){
   Values.deleteValue({ _id: Values.modal._id })
@@ -12,6 +14,10 @@ function deleteFunction(){
 function logIt() {
   console.log("Modal", Values.modal);
   console.log("newVAriable", Values.changedValues);
+  let childObjectKey = response.Keys.find((El) => El.type == "Object").name;
+  console.log(childObjectKey);
+  Values.changedValues[childObjectKey]=Values.Array
+  Values.updateValue();
 }
 </script>
 
@@ -48,6 +54,7 @@ function logIt() {
   left: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(10px);
 }

@@ -1,4 +1,4 @@
-require("dotenv").config()
+ require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
 const mongoose = require('mongoose');
@@ -37,6 +37,7 @@ app.use(express.json());
 
 //KEYS
 app.get("/requestKeys",async (req,res)=>{
+    console.log("REQUEST on /requestKeys")
     try {
         const result = await KeySchema.find().sort({index:1})
         let genericSchema={}
@@ -60,7 +61,8 @@ app.get("/requestKeys",async (req,res)=>{
 })
 
 app.post("/postKeys", async (req,res)=>{
-    console.log(req.body);
+    console.log("REQUEST on /postKeys")
+    // console.log(req.body);
     try {
         const result = await KeySchema.create(req.body)
         res.status(200).send(result)
@@ -82,6 +84,7 @@ app.put("/updateKey", async (req,res)=>{
 })
 
 app.delete("/removeKey", async (req, res)=>{
+    console.log("REQUEST on /removeKey")
     try {
         const result=await KeySchema.deleteOne(req.body)
         res.send(result)
@@ -92,6 +95,7 @@ app.delete("/removeKey", async (req, res)=>{
 })
 
 app.delete("/removeAllKeys", async (req, res)=>{
+    console.log("REQUEST on /removeAllKeys")
     try {
         const result=await KeySchema.deleteMany()
         res.send(result)
@@ -104,9 +108,10 @@ app.delete("/removeAllKeys", async (req, res)=>{
 //VALUES
 
 app.get("/getValues", async (req,res)=>{
+    console.log("REQUEST on /getValues")
     try {
        const result = await ValueSchema.find()
-       console.log("GetValues",result);
+    //    console.log("GetValues",result);
        res.send(result) 
     } catch (error) {
         console.log(error);
@@ -115,10 +120,23 @@ app.get("/getValues", async (req,res)=>{
 })
 
 app.post("/addValues", async (req,res)=>{
+    console.log("REQUEST on /addValues")
     try {
-        console.log("req.body",req.body);
+        // console.log("req.body",req.body);
         const result = await ValueSchema.create(req.body)
-        console.log("result",result);
+        // console.log("result",result);
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error)
+    }
+})
+
+app.put("/updateValue", async (req,res)=>{
+    console.log("REQUEST on /updateValue")
+    console.log(req.body);
+    try {
+        const result= await ValueSchema.findOneAndUpdate({_id:req.body._id}, req.body,{new:true})
         res.send(result)
     } catch (error) {
         console.log(error);
@@ -127,8 +145,10 @@ app.post("/addValues", async (req,res)=>{
 })
 
 app.delete("/deleteValue", async (req,res)=>{
+    console.log("REQUEST on /removeAllKeys")
     try {
-        console.log(req.body);
+        console.log("REQUEST on /deleteValue")
+        // console.log(req.body);
         const result=await ValueSchema.findByIdAndDelete(req.body._id)
         // console.log(result);
         res.send(result)

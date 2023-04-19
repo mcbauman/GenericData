@@ -39,5 +39,18 @@ export const useValueStore = defineStore("valueStore", () => {
       });
     }
 
-    return { Values, Array, Response, modal, changedValues, requestValues, storeNewValue, deleteValue };
+    function updateValue(){
+      const childObject={}
+      // childObject[objectKeyName]=Array.value
+      let objectToSend={...changedValues.value,_id:modal.value._id}
+      fetch("http://localhost:9000/updateValue", {
+        method: "Put",
+        headers: { "content-Type": "application/json" },
+        body: JSON.stringify(objectToSend),
+      }).then(() => {
+        requestValues();
+      });
+    }
+
+    return { Values, Array, Response, modal, changedValues, requestValues, storeNewValue, deleteValue, updateValue };
   });
