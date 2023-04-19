@@ -18,6 +18,7 @@ function logIt() {
   console.log(childObjectKey);
   Values.changedValues[childObjectKey]=Values.Array
   Values.updateValue();
+  Values.modal=false
 }
 </script>
 
@@ -30,12 +31,14 @@ function logIt() {
       </div>
       <div class="modalMain">
         <BindDataToForm :variableToDeclare="Values.changedValues" />
-        <button @click="logIt">logIt</button>
         <button
           class="danger"
           @click="deleteFunction"
         >
-          delete
+          <font-awesome-icon icon="trash" />
+        </button>
+        <button @click="logIt" class="callToAction">
+          <font-awesome-icon icon="floppy-disk" title="Add key-defenition" />
         </button>
       </div>
     </div>
