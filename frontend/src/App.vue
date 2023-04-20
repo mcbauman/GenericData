@@ -1,5 +1,15 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { useSettingsStore } from './stores/SettingsStore';
+import { useKeyResponseStore } from "./stores/keyResonse";
+import { useValueStore } from "./stores/ValueStore"
+
+const response = useKeyResponseStore();
+const settings=useSettingsStore()
+const Values=useValueStore()
+
+response.requestKeyes();
+Values.requestValues()
 </script>
 
 <template>
