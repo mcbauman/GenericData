@@ -1,23 +1,17 @@
 <script setup>
-import { useSettingsStore } from '../stores/SettingsStore';
-import { ref, onMounted } from 'vue';
+import {colorStore} from "../stores/colorSettingsStore"
 
-const settings=useSettingsStore()
-const color=ref("#e0edd4")
+const colors=colorStore()
 
 function LogTheCurrentColors(){
-    console.log("Color", color.value);
-    console.log("MainColor",settings.mainColor);
-    console.log(typeof (settings.mainColor));
-    console.log("MainContrast",settings.mainContrast);
+    console.log("NewColorStrore",colors.maincolor);
+    console.log("contrast from new Store", colors.maincontrast);
 }
 
 function resetColors(){
         settings.setColors();
 }
-// onMounted(() => {useSettingsStore.setColors}
-// , console.log(test))
-// settings.setColors();
+
 </script>
 
 <template>
@@ -26,11 +20,11 @@ function resetColors(){
             <!-- <div :style="{'background-color': settings.mainContrast}"> Anything</div> -->
             <div>
                 <span>ContrastColor</span>
-                <input type="color" v-model="color">
+                <input type="color" v-model="colors.maincontrast">
             </div>
             <div>
                 <span>MainColor</span>
-                <input type="color" v-model="settings.mainColor">
+                <input type="color" v-model="colors.maincolor">
             </div>
         </form>
     </section>
@@ -41,6 +35,7 @@ function resetColors(){
 
 <style scoped>
     form{
-        background-color: v-bind(color);
+        background-color: v-bind(colors.maincolor);
+        color:v-bind(colors.maincontrast);
     }
 </style>

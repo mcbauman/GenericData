@@ -1,11 +1,11 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import { useSettingsStore } from './stores/SettingsStore';
 import { useKeyResponseStore } from "./stores/keyResonse";
 import { useValueStore } from "./stores/ValueStore"
+import {colorStore} from "./stores/colorSettingsStore"
 
 const response = useKeyResponseStore();
-const settings=useSettingsStore()
+const colors=colorStore()
 const Values=useValueStore()
 
 response.requestKeyes();
@@ -29,8 +29,10 @@ Values.requestValues()
 <style>
   *{
     --inputs:white;
-    --maincolor:rgb(226, 223, 219,1);
-    --maincontrast:rgba(0, 40, 104, 0.7);
+    /* --maincolor:rgb(226, 223, 219,1); */
+    --maincolor:v-bind(colors.maincolor);
+    /* --maincontrast:rgba(0, 40, 104, 0.7); */
+    --maincontrast:v-bind(colors.maincontrast);
     --danger:rgb(200, 30, 30);
     --warning:rgb(179, 129, 36);
     --submit:rgb(113, 155, 29);
