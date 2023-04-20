@@ -4,19 +4,10 @@ import ShowKeys from "../components/ShowKeys.vue"
 </script>
 
 <template>
-
-<section class="defineKeys">
+  <section class="defineKeys">
     <DefineKeys />
   </section>
-  <hr>
-
   <section class="showKeys">
     <ShowKeys />
   </section>
-  <hr>
-
 </template>
-
-<style scoped>
-
-</style>

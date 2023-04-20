@@ -1,6 +1,24 @@
 @url=http://localhost:9000
 
+##
+
+POST {{url}}/login
+Content-Type: application/json
+
+{
+  "name":"Maze",
+  "password":"1234"
+}
 ### 
+POST {{url}}/createUser
+Content-Type: application/json
+
+{
+  "name":"Matthias",
+  "password":"1234",
+  "role":"admin"
+}
+###
 GET {{url}}/requestKeys
 ###
 POST {{url}}/postKeys

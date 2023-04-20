@@ -2,9 +2,7 @@
 import { useValueStore } from "../stores/ValueStore";
 import BindDataToForm from "./bindDataToForm.vue";
 import { useKeyResponseStore } from "../stores/keyResonse";
-import { useSettingsStore } from '../stores/SettingsStore';
 
-const settings=useSettingsStore()
 const Values = useValueStore();
 const response = useKeyResponseStore();
 
@@ -68,17 +66,17 @@ function logIt() {
 }
 .modalHeader {
   background-color: var(--maincontrast);
-  color: v-bind(settings.mainColor);
+  color: var(--maincolor);
   border-radius: 10px 10px 0 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px;
 }
 .modalMain {
-  background-color: v-bind(settings.mainColor);
+  background-color:var(--maincolor);
   display: flex;
   flex-wrap: wrap;
-  align-items: start;
   padding: 10px;
   border-radius: 0 0 10px 10px;
 }

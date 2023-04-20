@@ -9,15 +9,13 @@ function LogTheCurrentColors(){
 }
 
 function resetColors(){
-        settings.setColors();
+    colors.resetColors()
 }
-
 </script>
 
 <template>
     <section>
         <form>
-            <!-- <div :style="{'background-color': settings.mainContrast}"> Anything</div> -->
             <div>
                 <span>ContrastColor</span>
                 <input type="color" v-model="colors.maincontrast">
@@ -27,15 +25,10 @@ function resetColors(){
                 <input type="color" v-model="colors.maincolor">
             </div>
         </form>
+    <button @click="resetColors" class="danger" >Reset Colors</button>
+    <button @click="LogTheCurrentColors" class="callToAction">log Colors</button>
     </section>
-    <div id="ColoredDiv"></div>
-    <button @click="LogTheCurrentColors">log Colors</button>
-    <button @click="resetColors">Reset Colors</button>
 </template>
 
 <style scoped>
-    form{
-        background-color: v-bind(colors.maincolor);
-        color:v-bind(colors.maincontrast);
-    }
 </style>

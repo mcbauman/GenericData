@@ -2,9 +2,7 @@
 import { useKeyResponseStore } from "../stores/keyResonse";
 import { useValueStore } from "../stores/ValueStore";
 import showDetails from "./showDetails.vue";
-import { useSettingsStore } from '../stores/SettingsStore';
 
-const settings=useSettingsStore()
 const response = useKeyResponseStore();
 const Values = useValueStore();
 </script>
@@ -35,13 +33,13 @@ const Values = useValueStore();
 <style scoped>
 table {
   width: 100%;
-  background-color: v-bind(settings.mainColor);
+  background-color: var(--maincolor);
   margin-top: 20px;
   border-collapse: collapse;
 }
 th {
   background-color: var(--maincontrast);
-  color: v-bind(settings.mainColor);
+  color: var(--maincolor);
   padding: 10px;
 }
 td {
@@ -51,7 +49,7 @@ td {
 
 tr:hover {
   background-color: var(--maincontrast);
-  color: v-bind(settings.mainColor);
+  color: var(--maincolor);
 }
 
 p {

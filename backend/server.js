@@ -2,7 +2,8 @@
 const express = require("express")
 const cors = require("cors")
 const mongoose = require('mongoose');
-const KeySchema = require("./keySchema.JS")
+const KeySchema = require("./keySchema.JS");
+const UserSchema = require("./userSchema");
 //const ValueSchema = require("./valueSchema.js")
 
 const valueSchema=new mongoose.Schema({},{
@@ -34,6 +35,29 @@ connectMongoose()
 const app=express();
 app.use(cors());
 app.use(express.json());
+
+//USER
+app.post("/login", async (req,res)=>{
+    console.log("REQUEST on /login")
+    try {
+       const result = await UserSchema.find()
+       res.send(result) 
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error)
+    }
+})
+
+app.post("/createUser", async (req,res)=>{
+    console.log("REQUEST on /createUser");
+    try {
+        const result = await UserSchema.create(req.body)
+        res.send(result)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error)
+    }
+})
 
 //KEYS
 app.get("/requestKeys",async (req,res)=>{

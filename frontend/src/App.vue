@@ -29,9 +29,7 @@ Values.requestValues()
 <style>
   *{
     --inputs:white;
-    /* --maincolor:rgb(226, 223, 219,1); */
     --maincolor:v-bind(colors.maincolor);
-    /* --maincontrast:rgba(0, 40, 104, 0.7); */
     --maincontrast:v-bind(colors.maincontrast);
     --danger:rgb(200, 30, 30);
     --warning:rgb(179, 129, 36);
@@ -41,6 +39,8 @@ Values.requestValues()
   body{
     margin: 0 auto;
     max-width: 1200px;
+    background-image: url("./assets/pic2.jpg");
+    background-size: cover;
     background-color: var(--background);
     font-size: 1.2rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -72,18 +72,17 @@ Values.requestValues()
   }
 
   section{
-    /* display: flex;
-    justify-content: space-between; */
     background-color: var(--maincolor);
     color: var(--maincontrast);
     padding: 10px;
   }
 
   .entryWrapper{
+    background-color: var(--maincolor);
     display: flex;
     flex-direction: row;
-    align-items: end;
-    box-shadow: 0 0 5px var(--maincontrast);
+    align-items: center;
+    box-shadow: 0 0 5px black;
     margin: 10px;
     padding: 5px;
     border-radius: 10px;
@@ -98,7 +97,7 @@ Values.requestValues()
     display: flex;
     flex-direction: row;
   }
-  span{
+  span, label{
     font-size: 0.7rem;
   }
   button{
@@ -107,8 +106,6 @@ Values.requestValues()
     height: 45px;
     min-width: 45px;
     width: fit-content;
-    /* background-color: var(--maincontrast); */
-    /* color: var(--maincolor); */
   }
 
   .danger{
