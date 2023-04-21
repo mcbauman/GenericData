@@ -67,8 +67,11 @@ Values.requestValues()
     justify-content: space-between;
   }
   header>nav>a{
-    margin: 20px;
+    padding: 20px;
     color: var(--maincolor);
+  }
+  .router-link-active{
+    color:white
   }
 
   section{
@@ -120,5 +123,33 @@ Values.requestValues()
   .callToAction{
     background-color: var(--submit);
     color: var(--maincolor);
+  }
+
+  .entryWrapper:hover, button:hover, a:hover{
+    box-shadow: 0 2px 3px black inset;
+  }
+
+  .callToAction:hover{
+    color: black;
+    /* background-color: var(--maincolor); */
+  }
+
+  .danger:hover{
+    background-color: var(--danger);
+    color: var(--maincolor);
+  }
+
+  .warning:hover{
+    background-color: var(--warning);
+    color: var(--maincolor);
+  }
+
+  .submit:hover{
+    background-color: var(--submit);
+    color: var(--maincolor);
+  }
+
+  .entryWrapper, button, a{
+    transition: 0.5s;
   }
 </style>
