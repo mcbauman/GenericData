@@ -2,10 +2,10 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { useKeyResponseStore } from "./stores/keyResonse";
 import { useValueStore } from "./stores/ValueStore"
-import {colorStore} from "./stores/colorSettingsStore"
+import {userStore} from "./stores/userSettings"
 
 const response = useKeyResponseStore();
-const colors=colorStore()
+const colors=userStore()
 const Values=useValueStore()
 
 response.requestKeyes();
@@ -13,6 +13,7 @@ Values.requestValues()
 </script>
 
 <template>
+
   <header>
       <nav>
         <RouterLink to="/">Define Fields</RouterLink>

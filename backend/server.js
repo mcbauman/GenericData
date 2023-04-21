@@ -4,7 +4,9 @@ const cors = require("cors")
 const mongoose = require('mongoose');
 const KeySchema = require("./keySchema.JS");
 const UserSchema = require("./userSchema");
-//const ValueSchema = require("./valueSchema.js")
+const crypto=require("./crypto")
+const jwt = require('jsonwebtoken')
+const checkAuth = require('./checkAuth')
 
 const valueSchema=new mongoose.Schema({},{
     toJSON:{
@@ -40,8 +42,14 @@ app.use(express.json());
 app.post("/login", async (req,res)=>{
     console.log("REQUEST on /login")
     try {
-       const result = await UserSchema.find()
-       res.send(result) 
+        const user=await UserSchema.findOne({name:req.body.name})
+        if(!user){
+            res.status(401).send("user not found")}
+        const loginSuccess = await crypto.compare(req.body.password, user.password)
+        if(!loginSuccess){
+            res.status(401).send("wrong password")}
+        const token=jwt.sign({uid:user._id},process.env.SECRET,{expiresIn:"1d"})
+        res.send(token)
     } catch (error) {
         console.log(error);
         res.status(500).send(error)
@@ -49,8 +57,9 @@ app.post("/login", async (req,res)=>{
 })
 
 app.post("/createUser", async (req,res)=>{
-    console.log("REQUEST on /createUser");
+    console.log("REQUEST on /createUser",req.body);
     try {
+        req.body.password= await crypto.hash(req.body.password)
         const result = await UserSchema.create(req.body)
         res.send(result)
     } catch (error) {
@@ -60,7 +69,7 @@ app.post("/createUser", async (req,res)=>{
 })
 
 //KEYS
-app.get("/requestKeys",async (req,res)=>{
+app.get("/requestKeys", checkAuth.checkAuth, async (req,res)=>{
     console.log("REQUEST on /requestKeys")
     try {
         const result = await KeySchema.find().sort({index:1})
@@ -84,7 +93,7 @@ app.get("/requestKeys",async (req,res)=>{
     }
 })
 
-app.post("/postKeys", async (req,res)=>{
+app.post("/postKeys", checkAuth.checkAuth, async (req,res)=>{
     console.log("REQUEST on /postKeys")
     // console.log(req.body);
     try {
@@ -96,7 +105,7 @@ app.post("/postKeys", async (req,res)=>{
     }
 })
 
-app.put("/updateKey", async (req,res)=>{
+app.put("/updateKey", checkAuth.checkAuth, async (req,res)=>{
     console.log("UpdateKey",req.body);
     try {
         const result=await KeySchema.findByIdAndUpdate(req.body._id,req.body,{new:true})
@@ -107,7 +116,7 @@ app.put("/updateKey", async (req,res)=>{
     }
 })
 
-app.delete("/removeKey", async (req, res)=>{
+app.delete("/removeKey", checkAuth.checkAuth, async (req, res)=>{
     console.log("REQUEST on /removeKey")
     try {
         const result=await KeySchema.deleteOne(req.body)
@@ -118,7 +127,7 @@ app.delete("/removeKey", async (req, res)=>{
     }
 })
 
-app.delete("/removeAllKeys", async (req, res)=>{
+app.delete("/removeAllKeys", checkAuth.checkAuth, async (req, res)=>{
     console.log("REQUEST on /removeAllKeys")
     try {
         const result=await KeySchema.deleteMany()
@@ -131,7 +140,7 @@ app.delete("/removeAllKeys", async (req, res)=>{
 
 //VALUES
 
-app.get("/getValues", async (req,res)=>{
+app.get("/getValues", checkAuth.checkAuth, async (req,res)=>{
     console.log("REQUEST on /getValues")
     try {
        const result = await ValueSchema.find()
@@ -143,7 +152,7 @@ app.get("/getValues", async (req,res)=>{
     }
 })
 
-app.post("/addValues", async (req,res)=>{
+app.post("/addValues", checkAuth.checkAuth, async (req,res)=>{
     console.log("REQUEST on /addValues")
     try {
         // console.log("req.body",req.body);
@@ -156,7 +165,7 @@ app.post("/addValues", async (req,res)=>{
     }
 })
 
-app.put("/updateValue", async (req,res)=>{
+app.put("/updateValue", checkAuth.checkAuth, async (req,res)=>{
     console.log("REQUEST on /updateValue")
     console.log(req.body);
     try {
@@ -168,7 +177,7 @@ app.put("/updateValue", async (req,res)=>{
     }
 })
 
-app.delete("/deleteValue", async (req,res)=>{
+app.delete("/deleteValue", checkAuth.checkAuth, async (req,res)=>{
     console.log("REQUEST on /removeAllKeys")
     try {
         console.log("REQUEST on /deleteValue")

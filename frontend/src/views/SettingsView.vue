@@ -1,7 +1,7 @@
 <script setup>
-import {colorStore} from "../stores/colorSettingsStore"
+import {userStore} from "../stores/userSettings"
 
-const colors=colorStore()
+const colors=userStore()
 
 function LogTheCurrentColors(){
     console.log("NewColorStrore",colors.maincolor);

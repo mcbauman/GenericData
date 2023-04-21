@@ -1,7 +1,8 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 
-export const colorStore = defineStore("colorStore", () => {
+export const userStore = defineStore("userStore", () => {
+    const user=ref({})
     const maincolor=ref('#e2dfdbB3')
     const maincontrast=ref('#002868B3')
 
@@ -14,5 +15,5 @@ export const colorStore = defineStore("colorStore", () => {
 
     }
 
-    return { maincolor, maincontrast, resetColors };
+    return { user, maincolor, maincontrast, resetColors };
 });

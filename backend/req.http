@@ -6,7 +6,7 @@ POST {{url}}/login
 Content-Type: application/json
 
 {
-  "name":"Maze",
+  "name":"MatthiasB",
   "password":"1234"
 }
 ### 
@@ -14,7 +14,7 @@ POST {{url}}/createUser
 Content-Type: application/json
 
 {
-  "name":"Matthias",
+  "name":"MatthiasB",
   "password":"1234",
   "role":"admin"
 }
