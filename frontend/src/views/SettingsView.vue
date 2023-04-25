@@ -8,6 +8,7 @@ function LogTheCurrentColors() {
   console.log("MainContrast in Store", user.maincontrast);
   user.maincolor.length<8?user.maincolor+="B3":""
   user.maincontrast.length<8?user.maincontrast+="B3":""
+  user.update({maincontrast:user.maincontrast, maincolor:user.maincolor})
 }
 
 

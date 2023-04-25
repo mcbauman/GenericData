@@ -49,7 +49,7 @@ app.post("/login", async (req,res)=>{
             if(!loginSuccess){res.status(401).send("wrong password")}
             else{
                 const token=jwt.sign({uid:user._id},process.env.SECRET,{expiresIn:"1d"})
-                res.send(JSON.stringify(`Bearer ${token}`))
+                res.send(JSON.stringify({token:`Bearer ${token}`,user}))
             }
         }
     } catch (error) {

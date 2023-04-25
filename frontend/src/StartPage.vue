@@ -7,7 +7,7 @@ const response = useKeyResponseStore();
 const Values=useValueStore()
 
 response.requestKeyes();
-Values.requestValues()
+Values.requestValues();
 </script>
 
 <template>

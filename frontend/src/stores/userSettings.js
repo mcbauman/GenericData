@@ -24,8 +24,10 @@ export const userStore = defineStore("userStore", () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("DATA", data);
-        token.value = data;
+        token.value = data.token;
         localStorage.setItem("token", data);
+        maincolor.value=data.user.maincolor
+        maincontrast.value=data.user.maincontrast
       });
   }
 
@@ -39,7 +41,19 @@ export const userStore = defineStore("userStore", () => {
   }
 
   function update(user){
-    
+    fetch("http://localhost:9000/updateUser", {
+      method: "PUT",
+      headers: { 
+        "content-Type": "application/json",
+        "authorization":token.value
+      },
+      body: JSON.stringify(user),
+    })
+      .then(() => console.log("Changes Stored"))
+  }
+
+  function loadValues(){
+
   }
 
   function logout() {
@@ -49,5 +63,5 @@ export const userStore = defineStore("userStore", () => {
 
   function storeColors() {}
 
-  return { user, maincolor, maincontrast, login, resetColors, token, logout, create };
+  return { user, maincolor, maincontrast, login, resetColors, token, logout, create, update };
 });

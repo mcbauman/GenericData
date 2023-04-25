@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken")
 const UserSchema = require("./userSchema");
 
 async function checkAuth(req,res,next){
-    console.log("TokenChecked",req.headers.authorization);
     try {
         const authHeader=req.headers.authorization
         const token=authHeader.split(" ")[1]
