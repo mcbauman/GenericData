@@ -1,7 +1,12 @@
-(Done )realize Drag and Drop for Keys
+(Done) realize Drag and Drop for Keys
 
-Login and User-rights
-    -Encpytion, token
+(Done) Login, token
+
+Put-user to store colors
+handeling expired tokens
+
+-Encpytion
+-userRights
 
 Numbers => Unit like €/kg/ xxx
 Connection to different Item "married to ... _id"

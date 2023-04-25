@@ -1,4 +1,4 @@
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { defineStore } from "pinia";
 
 export const userStore = defineStore("userStore", () => {
@@ -36,6 +36,10 @@ export const userStore = defineStore("userStore", () => {
       body: JSON.stringify(user),
     })
       .then(() => console.log("userCreated"))
+  }
+
+  function update(user){
+    
   }
 
   function logout() {

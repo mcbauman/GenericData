@@ -4,13 +4,13 @@ import { userStore } from "../stores/userSettings";
 const user = userStore();
 
 function LogTheCurrentColors() {
-  console.log("NewColorStrore", user.maincolor);
-  console.log("contrast from new Store", user.maincontrast);
+  console.log("MainColor in Store", user.maincolor);
+  console.log("MainContrast in Store", user.maincontrast);
+  user.maincolor.length<8?user.maincolor+="B3":""
+  user.maincontrast.length<8?user.maincontrast+="B3":""
 }
 
-function resetColors() {
-  user.resetColors();
-}
+
 </script>
 
 <template>
@@ -24,11 +24,13 @@ function resetColors() {
         <span>MainColor</span>
         <input type="color" v-model="user.maincolor" />
       </div>
+      <button @click.prevent="user.resetColors()" class="danger">Reset Colors</button>
+      <button @click.prevent="LogTheCurrentColors" class="callToAction">
+        log Colors
+      </button>
     </form>
-    <button @click="resetColors" class="danger">Reset Colors</button>
-    <button @click="LogTheCurrentColors" class="callToAction">
-      log Colors
-    </button>
+  </section>
+  <section>
     <button @click="user.logout" class="danger">Logout</button>
   </section>
 </template>
