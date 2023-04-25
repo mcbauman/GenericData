@@ -1,6 +1,6 @@
 @url=http://localhost:9000
 
-##
+##USER
 
 POST {{url}}/login
 Content-Type: application/json
@@ -19,6 +19,16 @@ Content-Type: application/json
   "role":"admin"
 }
 ###
+PUT {{url}}/updateUser
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQyNzczMDViMjAxMTZjZDkwY2QyYjYiLCJpYXQiOjE2ODI0MTQ5NDMsImV4cCI6MTY4MjUwMTM0M30.FEq5InlWTnTEPV-WFENUd-DJFqPB2rKdYv_-aQ1MAOQ
+
+{
+  "maincolor":"#caf0feB3",
+  "maincontrast":"#561029B3"
+}
+
+###KEYS
 GET {{url}}/requestKeys
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQyNzczMDViMjAxMTZjZDkwY2QyYjYiLCJpYXQiOjE2ODIzNDMyOTUsImV4cCI6MTY4MjQyOTY5NX0.e1I0jUjXlNQOd1NywoUzoeVbu_YmPoTcB2aZu86HPoY
 ###
@@ -105,7 +115,8 @@ Content-Type: application/json
 {
     "name":"Array4"
 }
-###
+
+###VALUES
 
 POST {{url}}/addValues
 Content-Type: application/json

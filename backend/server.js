@@ -70,6 +70,17 @@ app.post("/createUser", async (req,res)=>{
     }
 })
 
+app.put("/updateUser", checkAuth.checkAuth, async (req,res)=>{
+    console.log("UpdateUser",req.user._id);
+    try {
+        const result=await UserSchema.findByIdAndUpdate(req.user._id,req.body,{new:true})
+        res.status(200).send(result)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error)
+    }
+})
+
 //KEYS
 app.get("/requestKeys", checkAuth.checkAuth, async (req,res)=>{
     console.log("REQUEST on /requestKeys")
