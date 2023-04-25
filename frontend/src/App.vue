@@ -89,6 +89,10 @@ const user=userStore()
     padding: 10px;
   }
 
+  label{
+    color:black
+  }
+
   .entryWrapper{
     background-color: var(--maincolor);
     display: flex;

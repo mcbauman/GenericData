@@ -19,8 +19,16 @@ export const useKeyResponseStore = defineStore("keyResponse", () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        Keys.value = data;
-      });
+        if(data.message=="jwt expired"){
+          localStorage.removeItem("token")
+          user.token=false
+        }
+        else{
+        Keys.value = data;}
+      })
+      .catch(error => {
+        if(error){console.log(error)}
+    })
   }
 
   function storeNewKey(newKeys) {

@@ -8,10 +8,17 @@ export const userStore = defineStore("userStore", () => {
   const tokenFromLS = localStorage.getItem("token");
   const tokenDefault = tokenFromLS ? tokenFromLS : null;
   const token = ref(tokenDefault);
-
+  
+  const superUserFromLS=localStorage.getItem("superUser")
+  const superUserDefault=superUserFromLS? superUserFromLS:{maincolor:"#e2dfdbB3",maincontrast:"#002868B3"}
+  const superUser=ref(superUserDefault)
+  //{maincolor,maincontrast,name,password,role}
+  
   function resetColors() {
     maincolor.value = "#e2dfdbB3";
     maincontrast.value = "#002868B3";
+    superUser.value.maincolor = "#e2dfdbB3";
+    superUser.value.maincontrast = "#002868B3";
   }
 
   function login(user) {
@@ -25,9 +32,12 @@ export const userStore = defineStore("userStore", () => {
       .then((data) => {
         console.log("DATA", data);
         token.value = data.token;
-        localStorage.setItem("token", data);
+        localStorage.setItem("token", data.token);
         maincolor.value=data.user.maincolor
         maincontrast.value=data.user.maincontrast
+        // superUser.value=data.user
+        // localStorage.setItem("superUser",JSON.stringify(data.user))
+        // console.log("SUPERUSER",superUser.value);
       });
   }
 
@@ -52,16 +62,12 @@ export const userStore = defineStore("userStore", () => {
       .then(() => console.log("Changes Stored"))
   }
 
-  function loadValues(){
-
-  }
-
   function logout() {
     token.value = null;
     localStorage.removeItem("token");
+    superUser.value={maincolor:"#e2dfdbB3",maincontrast:"#002868B3"}
+    localStorage.removeItem("superUser");
   }
-
-  function storeColors() {}
 
   return { user, maincolor, maincontrast, login, resetColors, token, logout, create, update };
 });

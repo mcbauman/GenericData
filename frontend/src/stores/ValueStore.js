@@ -18,8 +18,17 @@ export const useValueStore = defineStore("valueStore", () => {
         .then((response) => response.json())
         .then((data) => {
           console.log("Data in ValueStore/RequestValues()",data);
-          Response.value = data;
-        });
+          if(data.message=="jwt expired"){
+            localStorage.removeItem("token")
+            user.token=false
+          }
+          else{
+            Response.value = data;
+          }
+        })
+        .catch(error => {
+          if(error){console.log(error)}
+      })
     }
   
     function storeNewValue() {
