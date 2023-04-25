@@ -20,9 +20,11 @@ Content-Type: application/json
 }
 ###
 GET {{url}}/requestKeys
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQyNzczMDViMjAxMTZjZDkwY2QyYjYiLCJpYXQiOjE2ODIzNDMyOTUsImV4cCI6MTY4MjQyOTY5NX0.e1I0jUjXlNQOd1NywoUzoeVbu_YmPoTcB2aZu86HPoY
 ###
 POST {{url}}/postKeys
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQyNzczMDViMjAxMTZjZDkwY2QyYjYiLCJpYXQiOjE2ODIzNDMyOTUsImV4cCI6MTY4MjQyOTY5NX0.e1I0jUjXlNQOd1NywoUzoeVbu_YmPoTcB2aZu86HPoY
 
 [
       {

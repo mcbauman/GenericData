@@ -1,4 +1,4 @@
- require("dotenv").config()
+require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
 const mongoose = require('mongoose');
@@ -43,13 +43,15 @@ app.post("/login", async (req,res)=>{
     console.log("REQUEST on /login")
     try {
         const user=await UserSchema.findOne({name:req.body.name})
-        if(!user){
-            res.status(401).send("user not found")}
-        const loginSuccess = await crypto.compare(req.body.password, user.password)
-        if(!loginSuccess){
-            res.status(401).send("wrong password")}
-        const token=jwt.sign({uid:user._id},process.env.SECRET,{expiresIn:"1d"})
-        res.send(token)
+        if(!user){res.status(401).send("user not found")}
+        else{
+            const loginSuccess = await crypto.compare(req.body.password, user.password)
+            if(!loginSuccess){res.status(401).send("wrong password")}
+            else{
+                const token=jwt.sign({uid:user._id},process.env.SECRET,{expiresIn:"1d"})
+                res.send(JSON.stringify(`Bearer ${token}`))
+            }
+        }
     } catch (error) {
         console.log(error);
         res.status(500).send(error)

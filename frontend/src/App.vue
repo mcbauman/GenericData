@@ -1,37 +1,41 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import { useKeyResponseStore } from "./stores/keyResonse";
-import { useValueStore } from "./stores/ValueStore"
+import { ref } from 'vue';
 import {userStore} from "./stores/userSettings"
+import StartPage from "./StartPage.vue"
 
-const response = useKeyResponseStore();
-const colors=userStore()
-const Values=useValueStore()
+const loginData=ref({})
+const user=userStore()
 
-response.requestKeyes();
-Values.requestValues()
+function loginFunction(){
+  console.log("LogInData", loginData.value);
+  user.login(loginData.value)
+  console.log("TOKEN",user.token);
+}
+
+function printToken(){
+  console.log(user.token);
+}
 </script>
 
 <template>
-
-  <header>
-      <nav>
-        <RouterLink to="/">Define Fields</RouterLink>
-        <RouterLink to="/about">Enter Values</RouterLink>
-        <RouterLink to="/ShowValues">Show Values</RouterLink>
-        <RouterLink to="/settings">Settings</RouterLink>
-      </nav>
-  </header>
-  <main>
-    <RouterView />
+  <StartPage v-if="user.token"/>
+  <main v-else>
+    <section>
+      <form>
+        <input type="text" v-model="loginData.name" placeholder="UserName">
+        <input type="password" v-model="loginData.password" placeholder="***">
+        <button type="submit" @click.prevent="loginFunction">LogIn</button>
+      </form>
+      <button @click="printToken">SHOWTOKEN</button>
+    </section>
   </main>
 </template>
 
 <style>
   *{
     --inputs:white;
-    --maincolor:v-bind(colors.maincolor);
-    --maincontrast:v-bind(colors.maincontrast);
+    --maincolor:v-bind(user.maincolor);
+    --maincontrast:v-bind(user.maincontrast);
     --danger:rgb(200, 30, 30);
     --warning:rgb(179, 129, 36);
     --submit:rgb(113, 155, 29);
