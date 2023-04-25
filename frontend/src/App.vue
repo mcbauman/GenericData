@@ -4,29 +4,33 @@ import {userStore} from "./stores/userSettings"
 import StartPage from "./StartPage.vue"
 
 const loginData=ref({})
+const createData=ref({role:"user"})
+const logCreate=ref(true)
 const user=userStore()
-
-function loginFunction(){
-  console.log("LogInData", loginData.value);
-  user.login(loginData.value)
-  console.log("TOKEN",user.token);
-}
-
-function printToken(){
-  console.log(user.token);
-}
 </script>
 
 <template>
   <StartPage v-if="user.token"/>
-  <main v-else>
-    <section>
+  <main v-else class="logBody">
+    <section v-if="logCreate" class="logWindow">
       <form>
         <input type="text" v-model="loginData.name" placeholder="UserName">
         <input type="password" v-model="loginData.password" placeholder="***">
-        <button type="submit" @click.prevent="loginFunction">LogIn</button>
+        <div>
+          <button type="submit" @click.prevent="user.login(loginData)" class="callToAction">LogIn</button>
+          <button class="warning" @click="logCreate=false">Create User</button>
+        </div>
       </form>
-      <button @click="printToken">SHOWTOKEN</button>
+    </section>
+    <section v-else class="logWindow">
+      <form>
+        <input type="text" v-model="createData.name" placeholder="UserName">
+        <input type="password" v-model="createData.password" placeholder="***">
+        <div>
+          <button type="submit" @click.prevent="user.create(createData)" class="callToAction">Create User</button>
+          <button class="warning" @click="logCreate=true">log in</button>
+        </div>
+      </form>
     </section>
   </main>
 </template>
@@ -156,5 +160,26 @@ function printToken(){
 
   .entryWrapper, button, a{
     transition: 0.5s;
+  }
+
+  .logBody{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logWindow{
+    width: 50%;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+  }
+
+  .logWindow > form{
+    display: flex;
+    flex-direction: column;
   }
 </style>

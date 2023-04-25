@@ -7,27 +7,16 @@ import {userStore} from "./userSettings"
 export const useKeyResponseStore = defineStore("keyResponse", () => {
   const user=userStore()
   const Keys = ref([])
-  
-  // function requestKeyes() {
-  //   console.log("user.token", user.token);
-  //   const options = {
-  //     method: 'GET',
-  //     headers: { 
-  //       'Content-Type': 'application/json',
-  //       'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQyNzczMDViMjAxMTZjZDkwY2QyYjYiLCJpYXQiOjE2ODI0MDA3NzUsImV4cCI6MTY4MjQ4NzE3NX0.PI6TVDae-D5fQ3lj0cBb2pY6rjc3VhLcQShSoyWX6WI'
-  //     },
-  //   };
-  //   fetch("http://localhost:9000/requestKeys",options)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       Keys.value = data;
-  //     });
-  // }
 
   function requestKeyes() {
     const headers={authorization:user.token}
     JSON.stringify(headers)
-    fetch("http://localhost:9000/requestKeys",{headers})
+    fetch("http://localhost:9000/requestKeys",{
+      headers:{
+        "content-Type": "application/json",
+        "authorization":user.token 
+      }
+    })
       .then((response) => response.json())
       .then((data) => {
         Keys.value = data;
