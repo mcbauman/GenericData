@@ -5,7 +5,9 @@ export const userStore = defineStore("userStore", () => {
     const user=ref({})
     const maincolor=ref('#e2dfdbB3')
     const maincontrast=ref('#002868B3')
-    const token=ref()
+    const tokenFromLS = localStorage.getItem("token");
+    const tokenDefault = tokenFromLS ? tokenFromLS : null;
+    const token=ref(tokenDefault)
 
     function resetColors(){
         maincolor.value='#e2dfdbB3'
@@ -23,6 +25,7 @@ export const userStore = defineStore("userStore", () => {
     .then((data) =>  {
       console.log("DATA",data);
       token.value=data
+      localStorage.setItem("token", data);
     });
   }
 
