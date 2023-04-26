@@ -2,11 +2,20 @@ require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
 const mongoose = require('mongoose');
-const KeySchema = require("./keySchema.JS");
-const UserSchema = require("./userSchema");
-const crypto=require("./crypto")
 const jwt = require('jsonwebtoken')
-const checkAuth = require('./checkAuth')
+
+// const userRouter = require("./routes/userRouter")
+// const keyRouter = require("./routes/keyRouter")
+// const valueRouter = require("./routes/valueRouter")
+
+const KeySchema = require("./schemas/keySchema.js");
+const UserSchema = require("./schemas/userSchema.js");
+// const valueSchema = require("./valueSchema")
+// const ValueSchema = require("./valueSchema")
+
+const crypto=require("./helpers/crypto.js")
+const checkAuth = require('./middleware/checkAuth.js')
+const mongooseConnect=require("./helpers/mongooseConnect.js")
 
 const valueSchema=new mongoose.Schema({},{
     toJSON:{
@@ -17,26 +26,30 @@ const valueSchema=new mongoose.Schema({},{
 })
 const ValueSchema=mongoose.model("Values",valueSchema)
 
-// Configuaration Mongoose connetction
-function connectMongoose(){
-    const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
-    const connectionString = `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}`;
+// // Configuaration Mongoose connetction
+// function connectMongoose(){
+//     const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
+//     const connectionString = `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}`;
   
-    mongoose.connection.on("connecting", () => console.log("[DB]Mongoose connecting"));
-    mongoose.connection.on("connected", () => console.log("[DB]Mongoose connected"));
-    mongoose.connection.on("disconnecting", () =>console.log("[DB]Mongoose disconnecting"));
-    mongoose.connection.on("disconnected", () =>console.log("[DB]Mongoose disconnected"));
-    mongoose.connection.on("reconnected", () => console.log("[DB]Mongoose reconnected"));
-    mongoose.connection.on("error", (er) => console.log("[DB]Mongoose error", er));
+//     mongoose.connection.on("connecting", () => console.log("[DB]Mongoose connecting"));
+//     mongoose.connection.on("connected", () => console.log("[DB]Mongoose connected"));
+//     mongoose.connection.on("disconnecting", () =>console.log("[DB]Mongoose disconnecting"));
+//     mongoose.connection.on("disconnected", () =>console.log("[DB]Mongoose disconnected"));
+//     mongoose.connection.on("reconnected", () => console.log("[DB]Mongoose reconnected"));
+//     mongoose.connection.on("error", (er) => console.log("[DB]Mongoose error", er));
   
-    mongoose.connect(connectionString);
-}
+//     mongoose.connect(connectionString);
+// }
 
-connectMongoose()
+mongooseConnect.connectMongoose()
 
 const app=express();
 app.use(cors());
 app.use(express.json());
+
+// app.use("/user",userRouter);
+// app.use("/key",keyRouter);
+// app.use("/value",valueRouter);
 
 //USER
 app.post("/login", async (req,res)=>{
