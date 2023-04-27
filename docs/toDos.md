@@ -1,9 +1,10 @@
 (Done) realize Drag and Drop for Keys
 (Done) Login, token
 (Done) Put-user to store colors
-(done) handeling expired tokens
+(Done) handeling expired tokens
+(Done) CostumeColors after page reload
 
-Funtion Sorting the others in Drag and Drop!
+Function Sorting the others in Drag and Drop!
 Restructure User
 Resturcture BackEnd (if UserSchema allowes)
 

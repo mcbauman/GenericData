@@ -3,11 +3,16 @@ import { defineStore } from "pinia";
 
 export const userStore = defineStore("userStore", () => {
   const user = ref({});
-  const maincolor = ref("#e2dfdbB3");
-  const maincontrast = ref("#002868B3");
   const tokenFromLS = localStorage.getItem("token");
   const tokenDefault = tokenFromLS ? tokenFromLS : null;
   const token = ref(tokenDefault);
+
+  const maincolorFromLS=localStorage.getItem("maincolor")
+  const defaultMaincolor=maincolorFromLS? maincolorFromLS: "#e2dfdbB3"
+  const maincolor = ref(defaultMaincolor);
+  const maincontrastFromLS= localStorage.getItem("maincontrast")
+  const defaultMaincontrast=maincontrastFromLS? maincontrastFromLS: "#002868B3"
+  const maincontrast = ref(defaultMaincontrast);
   
   const superUserFromLS=localStorage.getItem("superUser")
   const superUserDefault=superUserFromLS? superUserFromLS:{maincolor:"#e2dfdbB3",maincontrast:"#002868B3"}
@@ -34,7 +39,9 @@ export const userStore = defineStore("userStore", () => {
         token.value = data.token;
         localStorage.setItem("token", data.token);
         maincolor.value=data.user.maincolor
+        localStorage.setItem("maincolor",data.user.maincolor)
         maincontrast.value=data.user.maincontrast
+        localStorage.setItem("maincontrast",data.user.maincontrast)
         // superUser.value=data.user
         // localStorage.setItem("superUser",JSON.stringify(data.user))
         // console.log("SUPERUSER",superUser.value);
@@ -51,6 +58,8 @@ export const userStore = defineStore("userStore", () => {
   }
 
   function update(user){
+    localStorage.setItem("maincolor",maincolor.value)
+    localStorage.setItem("maincontrast",maincontrast.value)
     fetch("http://localhost:9000/updateUser", {
       method: "PUT",
       headers: { 
