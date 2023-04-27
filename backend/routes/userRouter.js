@@ -1,14 +1,10 @@
 const express = require("express")
-const checkAuth = require('../checkAuth')
-const crypto=require("../crypto")
-const UserSchema = require("../userSchema");
+const checkAuth = require("../middleware/checkAuth")
+const crypto=require("../helpers/crypto")
+const jwt = require('jsonwebtoken')
+const UserSchema = require("../schemas/userSchema");
 
 const userRouter=express.Router()
-
-// userRouter.route("/login")
-//     .get((req,res)=>{
-//     res.send("ANSWERING USERROUTER")
-// })
 
 userRouter.post("/login", async (req,res)=>{
     console.log("REQUEST on /login")

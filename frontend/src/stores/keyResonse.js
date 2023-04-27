@@ -11,7 +11,7 @@ export const useKeyResponseStore = defineStore("keyResponse", () => {
   function requestKeyes() {
     const headers={authorization:user.token}
     JSON.stringify(headers)
-    fetch("http://localhost:9000/requestKeys",{
+    fetch("http://localhost:9000/key/requestKeys",{
       headers:{
         "content-Type": "application/json",
         "authorization":user.token 
@@ -33,7 +33,7 @@ export const useKeyResponseStore = defineStore("keyResponse", () => {
 
   function storeNewKey(newKeys) {
     console.log("NEW KEYS IN StoreNewKey",newKeys);
-    fetch("http://localhost:9000/postKeys", {
+    fetch("http://localhost:9000/key/postKeys", {
       method: "POST",
       headers: { 
         "content-Type": "application/json",
@@ -45,7 +45,7 @@ export const useKeyResponseStore = defineStore("keyResponse", () => {
   }
 
   function deleteKey(filter) {
-    fetch("http://localhost:9000/removeKey", {
+    fetch("http://localhost:9000/key/removeKey", {
       method: "Delete",
       headers: { 
         "content-Type": "application/json",
@@ -57,7 +57,7 @@ export const useKeyResponseStore = defineStore("keyResponse", () => {
   }
 
   function updateKey(_id,index) {
-    fetch("http://localhost:9000/updateKey", {
+    fetch("http://localhost:9000/key/updateKey", {
       method: "Put",
       headers: { 
         "content-Type": "application/json",

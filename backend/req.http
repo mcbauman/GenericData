@@ -1,7 +1,13 @@
 @url=http://localhost:9000
 
 ##USER
-GET {{url}}/user/login
+POST {{url}}/user/login
+Content-Type: application/json
+
+{
+  "name":"MatthiasB",
+  "password":"1234"
+}
 
 ###
 POST {{url}}/login

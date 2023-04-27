@@ -1,10 +1,11 @@
 const express = require("express")
-const checkAuth = require('../checkAuth')
-const KeySchema = require("../keySchema.JS");
+const checkAuth = require("../middleware/checkAuth")
+const KeySchema = require("../schemas/keySchema.JS");
+const {valueSchema} = require("../schemas/valueSchema")
 
 const keyRouter=express.Router()
 
-keyRouter.get(checkAuth.checkAuth, async (req,res)=>{
+keyRouter.get("/requestKeys",checkAuth.checkAuth, async (req,res)=>{
     console.log("REQUEST on /requestKeys")
     try {
         const result = await KeySchema.find().sort({index:1})
@@ -28,7 +29,7 @@ keyRouter.get(checkAuth.checkAuth, async (req,res)=>{
     }
 })
 
-keyRouter.post(checkAuth.checkAuth, async (req,res)=>{
+keyRouter.post("/postKeys",checkAuth.checkAuth, async (req,res)=>{
     console.log("REQUEST on /postKeys")
     // console.log(req.body);
     try {
@@ -40,7 +41,7 @@ keyRouter.post(checkAuth.checkAuth, async (req,res)=>{
     }
 })
 
-keyRouter.put(checkAuth.checkAuth, async (req,res)=>{
+keyRouter.put("/updateKey", checkAuth.checkAuth, async (req,res)=>{
     console.log("UpdateKey",req.body);
     try {
         const result=await KeySchema.findByIdAndUpdate(req.body._id,req.body,{new:true})
@@ -51,7 +52,7 @@ keyRouter.put(checkAuth.checkAuth, async (req,res)=>{
     }
 })
 
-keyRouter.delete(checkAuth.checkAuth, async (req, res)=>{
+keyRouter.delete("/removeKey", checkAuth.checkAuth, async (req, res)=>{
     console.log("REQUEST on /removeKey")
     try {
         const result=await KeySchema.deleteOne(req.body)

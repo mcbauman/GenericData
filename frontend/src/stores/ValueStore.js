@@ -12,7 +12,7 @@ export const useValueStore = defineStore("valueStore", () => {
     const changedValues = ref({})
 
     function requestValues() {
-      fetch("http://localhost:9000/getValues",{
+      fetch("http://localhost:9000/value/getValues",{
         headers:{"authorization":user.token}
       })
         .then((response) => response.json())
@@ -33,7 +33,7 @@ export const useValueStore = defineStore("valueStore", () => {
   
     function storeNewValue() {
       console.log("NEW KEYS IN StoreNewKey",Values.value);
-      fetch("http://localhost:9000/addValues", {
+      fetch("http://localhost:9000/value/addValues", {
         method: "POST",
         headers: { 
           "content-Type": "application/json",
@@ -45,7 +45,7 @@ export const useValueStore = defineStore("valueStore", () => {
     }
   
     function deleteValue(id) {
-      fetch("http://localhost:9000/deleteValue", {
+      fetch("http://localhost:9000/value/deleteValue", {
         method: "Delete",
         headers: { 
           "content-Type": "application/json",
@@ -60,7 +60,7 @@ export const useValueStore = defineStore("valueStore", () => {
       const childObject={}
       // childObject[objectKeyName]=Array.value
       let objectToSend={...changedValues.value,_id:modal.value._id}
-      fetch("http://localhost:9000/updateValue", {
+      fetch("http://localhost:9000/value/updateValue", {
         method: "Put",
         headers: { 
           "content-Type": "application/json",

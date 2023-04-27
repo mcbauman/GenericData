@@ -1,19 +1,9 @@
 const express = require("express")
-const checkAuth = require('../checkAuth')
-const mongoose = require('mongoose');
-
-const valueSchema=new mongoose.Schema({},{
-    toJSON:{
-        transform(doc,ret){
-            delete ret.__v
-        }
-    }
-})
-const ValueSchema=mongoose.model("Values",valueSchema)
-
+const checkAuth = require("../middleware/checkAuth")
+const { ValueSchema} = require("../schemas/valueSchema")
 const valueRouter=express.Router()
 
-valueRouter.get(checkAuth.checkAuth, async (req,res)=>{
+valueRouter.get("/getValues",checkAuth.checkAuth, async (req,res)=>{
     console.log("REQUEST on /getValues")
     try {
        const result = await ValueSchema.find()
@@ -25,7 +15,7 @@ valueRouter.get(checkAuth.checkAuth, async (req,res)=>{
     }
 })
 
-valueRouter.post(checkAuth.checkAuth, async (req,res)=>{
+valueRouter.post("/addValues", checkAuth.checkAuth, async (req,res)=>{
     console.log("REQUEST on /addValues")
     try {
         // console.log("req.body",req.body);
@@ -38,7 +28,7 @@ valueRouter.post(checkAuth.checkAuth, async (req,res)=>{
     }
 })
 
-valueRouter.put(checkAuth.checkAuth, async (req,res)=>{
+valueRouter.put("/updateValue", checkAuth.checkAuth, async (req,res)=>{
     console.log("REQUEST on /updateValue")
     console.log(req.body);
     try {
@@ -50,7 +40,7 @@ valueRouter.put(checkAuth.checkAuth, async (req,res)=>{
     }
 })
 
-valueRouter.delete(checkAuth.checkAuth, async (req,res)=>{
+valueRouter.delete("/removeAllKeys", checkAuth.checkAuth, async (req,res)=>{
     console.log("REQUEST on /removeAllKeys")
     try {
         console.log("REQUEST on /deleteValue")

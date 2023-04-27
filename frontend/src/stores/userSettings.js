@@ -28,7 +28,7 @@ export const userStore = defineStore("userStore", () => {
 
   function login(user) {
     console.log("NEW KEYS IN StoreNewKey", user);
-    fetch("http://localhost:9000/login", {
+    fetch("http://localhost:9000/user/login", {
       method: "POST",
       headers: { "content-Type": "application/json" },
       body: JSON.stringify(user),
@@ -49,7 +49,7 @@ export const userStore = defineStore("userStore", () => {
   }
 
   function create(user){
-    fetch("http://localhost:9000/createUser", {
+    fetch("http://localhost:9000/user/createUser", {
       method: "POST",
       headers: { "content-Type": "application/json" },
       body: JSON.stringify(user),
