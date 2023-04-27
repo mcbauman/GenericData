@@ -3,8 +3,8 @@
 (Done) Put-user to store colors
 (Done) handeling expired tokens
 (Done) CostumeColors after page reload
+(Done) Function Sorting the others in Drag and Drop!
 
-Function Sorting the others in Drag and Drop!
 Restructure User
 Resturcture BackEnd (if UserSchema allowes)
 

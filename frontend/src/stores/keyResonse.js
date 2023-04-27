@@ -71,7 +71,10 @@ export const useKeyResponseStore = defineStore("keyResponse", () => {
   function moveItemToIndex(itemIndex, newIndex, _id) {
     const cutted = Keys.value.splice(itemIndex, 1);
     Keys.value.splice(newIndex, 0, cutted[0]);
-    updateKey(_id,newIndex)
+    Keys.value.forEach((e)=>e.index = Keys.value.findIndex((x)=>x._id === e._id))
+    Keys.value.forEach((element)=>{
+      updateKey(element._id,element.index)
+    })
   }
 
   return { Keys, requestKeyes, storeNewKey, deleteKey, moveItemToIndex };
