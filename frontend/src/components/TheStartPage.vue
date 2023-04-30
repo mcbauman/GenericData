@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import { useKeyResponseStore } from "./stores/keyResonse";
-import { useValueStore } from "./stores/ValueStore"
+import { useKeyResponseStore } from "../stores/keyResonse";
+import { useValueStore } from "../stores/ValueStore"
 
 const response = useKeyResponseStore();
 const Values=useValueStore()

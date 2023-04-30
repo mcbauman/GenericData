@@ -1,5 +1,5 @@
-import { ref, computed } from "vue";
 import { defineStore } from "pinia";
+import { ref } from "vue";
 import {userStore} from "./userSettings"
 
 export const useValueStore = defineStore("valueStore", () => {

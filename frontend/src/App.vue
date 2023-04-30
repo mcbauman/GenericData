@@ -1,6 +1,6 @@
 <script setup>
 import {userStore} from "./stores/userSettings"
-import StartPage from "./TheStartPage.vue"
+import StartPage from "./components/TheStartPage.vue"
 import TheLogin from "./components/TheLogin.vue"
 
 const user=userStore()
