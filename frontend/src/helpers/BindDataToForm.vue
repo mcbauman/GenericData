@@ -11,8 +11,6 @@ const response = useKeyResponseStore();
 
 function savefunction() {
   Values.Array.push(keyValuePairs.value);
-  console.log("ArrayToAdd", Values.Array);
-  console.log("Values.Array", props.variableToDeclare);
   keyValuePairs.value = {};
   arrHelper.value = false;
 }
@@ -22,38 +20,39 @@ function savefunction() {
   <div v-for="item in response.Keys" class="entryWrapper">
     <div class="fieldWrapper">
       <span>{{ item.name }}</span>
-      <!-- AddOn To Key if Number -->
+      <!-- AddOn To Key if Type== Number -->
       <span v-if="item.type == 'Number'"
         >{{ item.minRange }} - {{ item.maxRange }}</span
       >
-      <!-- For Input Type String -->
+
+<!-- For Input Type String -->
       <input
-        class="aThird"
         v-if="item.type == 'String' || item.type == 'Date'"
         :type="item.type"
         v-model="props.variableToDeclare[item.name]"
         :placeholder="Values.modal[item.name]"
-      />
-      <!-- For Input Type Number -->
-      <input
         class="aThird"
+      />
+<!-- For Input Type Number -->
+      <input
         v-if="item.type == 'Number'"
         type="Number"
         :min="item.minRange"
         :max="item.maxRange"
         v-model="props.variableToDeclare[item.name]"
         :placeholder="Values.modal[item.name]"
-      />
-      <!-- For Input Type Boolean -->
-      <input
         class="aThird"
+      />
+<!-- For Input Type Boolean -->
+      <input
         v-if="item.type == 'Boolean'"
         type="checkbox"
         v-model="props.variableToDeclare[item.name]"
         :placeholder="Values.modal[item.name]"
+        class="aThird"
       />
-      <!-- For Input Type Array -->
-      <fieldset class="aThird" v-if="item.type == 'Array'">
+<!-- For Input Type Array -->
+      <fieldset v-if="item.type == 'Array'" class="aThird">
         <div v-for="(element, index) in item.arrayOption">
           <input
             type="radio"
@@ -66,8 +65,8 @@ function savefunction() {
           <label :for="index">{{ element }}</label>
         </div>
       </fieldset>
-      <form class="wholeW" v-if="item.type == 'Object'">
-        <!-- For Input Type Object -->
+<!-- For Input Type Object -->
+      <form v-if="item.type == 'Object'" class="wholeW">
         <div>
           <button @click.prevent="arrHelper = true" class="submit">
             <font-awesome-icon icon="plus" title="Add Data to List" />

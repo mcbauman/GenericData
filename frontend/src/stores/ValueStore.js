@@ -17,7 +17,6 @@ export const useValueStore = defineStore("valueStore", () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Data in ValueStore/RequestValues()",data);
           if(data.message=="jwt expired"){
             localStorage.removeItem("token")
             user.token=false
@@ -32,7 +31,6 @@ export const useValueStore = defineStore("valueStore", () => {
     }
   
     function storeNewValue() {
-      console.log("NEW KEYS IN StoreNewKey",Values.value);
       fetch("http://localhost:9000/value/addValues", {
         method: "POST",
         headers: { 
@@ -57,8 +55,6 @@ export const useValueStore = defineStore("valueStore", () => {
     }
 
     function updateValue(){
-      const childObject={}
-      // childObject[objectKeyName]=Array.value
       let objectToSend={...changedValues.value,_id:modal.value._id}
       fetch("http://localhost:9000/value/updateValue", {
         method: "Put",

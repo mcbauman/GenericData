@@ -7,8 +7,6 @@ export const useKeyResponseStore = defineStore("keyResponse", () => {
   const Keys = ref([])
 
   function requestKeyes() {
-    const headers={authorization:user.token}
-    JSON.stringify(headers)
     fetch("http://localhost:9000/key/requestKeys",{
       headers:{
         "content-Type": "application/json",
@@ -30,7 +28,6 @@ export const useKeyResponseStore = defineStore("keyResponse", () => {
   }
 
   function storeNewKey(newKeys) {
-    console.log("NEW KEYS IN StoreNewKey",newKeys);
     fetch("http://localhost:9000/key/postKeys", {
       method: "POST",
       headers: { 

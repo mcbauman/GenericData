@@ -1,6 +1,6 @@
 <script setup>
 import { useValueStore } from "../stores/ValueStore";
-import BindDataToForm from "./bindDataToForm.vue";
+import BindDataToForm from "../helpers/BindDataToForm.vue";
 import { useKeyResponseStore } from "../stores/keyResonse";
 
 const Values = useValueStore();

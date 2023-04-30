@@ -1,6 +1,6 @@
 <script setup>
-import DefineKeys from "../components/defineKeys.vue"
-import ShowKeys from "../components/ShowKeys.vue"
+import DefineKeys from "../components/DefineFields-DefineKeys.vue"
+import ShowKeys from "../components/DefineFields-ShowKeys.vue"
 </script>
 
 <template>

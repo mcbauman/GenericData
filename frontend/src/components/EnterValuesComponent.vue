@@ -1,7 +1,7 @@
 <script setup>
 import { useKeyResponseStore } from "../stores/keyResonse";
 import { useValueStore } from "../stores/ValueStore";
-import BindDataToForm from "./bindDataToForm.vue";
+import BindDataToForm from "../helpers/BindDataToForm.vue";
 
 const Values = useValueStore();
 const response = useKeyResponseStore();

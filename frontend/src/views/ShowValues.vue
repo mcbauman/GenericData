@@ -1,5 +1,5 @@
 <script setup>
-import ShowValues from "../components/ShowValues.vue"
+import ShowValues from "../components/ShowValuesComponent.vue"
 </script>
 
 <template>

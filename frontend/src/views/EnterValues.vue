@@ -1,5 +1,5 @@
 <script setup>
-import EnterValues from "../components/EnterValues.vue";
+import EnterValues from "../components/EnterValuesComponent.vue";
 </script>
 
 <template>

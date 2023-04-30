@@ -7,7 +7,7 @@ const UserSchema = require("../schemas/userSchema");
 const userRouter=express.Router()
 
 userRouter.post("/login", async (req,res)=>{
-    console.log("REQUEST on /login")
+    console.log("REQUEST on /login",req.body)
     try {
         const user=await UserSchema.findOne({name:req.body.name})
         if(!user){res.status(401).send("user not found")}

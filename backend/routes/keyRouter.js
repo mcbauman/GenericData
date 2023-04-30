@@ -30,8 +30,7 @@ keyRouter.get("/requestKeys",checkAuth.checkAuth, async (req,res)=>{
 })
 
 keyRouter.post("/postKeys",checkAuth.checkAuth, async (req,res)=>{
-    console.log("REQUEST on /postKeys")
-    // console.log(req.body);
+    console.log("REQUEST on /postKeys",req.body)
     try {
         const result = await KeySchema.create(req.body)
         res.status(200).send(result)
@@ -53,7 +52,7 @@ keyRouter.put("/updateKey", checkAuth.checkAuth, async (req,res)=>{
 })
 
 keyRouter.delete("/removeKey", checkAuth.checkAuth, async (req, res)=>{
-    console.log("REQUEST on /removeKey")
+    console.log("REQUEST on /removeKey",req.body)
     try {
         const result=await KeySchema.deleteOne(req.body)
         res.send(result)

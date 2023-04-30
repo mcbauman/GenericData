@@ -1,13 +1,13 @@
 <script setup>
 import {userStore} from "./stores/userSettings"
-import StartPage from "./components/TheStartPage.vue"
+import TheStartPage from "./components/TheStartPage.vue"
 import TheLogin from "./components/TheLogin.vue"
 
 const user=userStore()
 </script>
 
 <template>
-  <StartPage v-if="user.token"/>
+  <TheStartPage v-if="user.token"/>
   <TheLogin v-else/>
 </template>
 

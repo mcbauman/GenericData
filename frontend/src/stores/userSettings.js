@@ -27,7 +27,6 @@ export const userStore = defineStore("userStore", () => {
   }
 
   function login(user) {
-    console.log("NEW KEYS IN StoreNewKey", user);
     fetch("http://localhost:9000/user/login", {
       method: "POST",
       headers: { "content-Type": "application/json" },

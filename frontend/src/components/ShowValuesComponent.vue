@@ -1,7 +1,7 @@
 <script setup>
 import { useKeyResponseStore } from "../stores/keyResonse";
 import { useValueStore } from "../stores/ValueStore";
-import showDetails from "./showDetails.vue";
+import showDetails from "./ShowValues-DetailsModal.vue";
 
 const response = useKeyResponseStore();
 const Values = useValueStore();
